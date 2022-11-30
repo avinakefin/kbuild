@@ -1,45 +1,45 @@
 #! /bin/bash
 
 # Kernel Repo
-KERNEL_REPO=https://"${GITHUB_USER}":"${GITHUB_TOKEN}"@github.com/fajar4561/Kernel_Asus_SDM660
+KERNEL_REPO=https://"${GITHUB_USER}":"${GITHUB_TOKEN}"@github.com/avinakefin/alioth
 
 # Kernel Branch
-KERNEL_BRANCH=R1
+KERNEL_BRANCH=12.1-alioth
 
 # The name of the device for which the kernel is built
 MODEL="Asus Zenfone Max Pro M1"
 
 # The codename of the device
-DEVICE="X00TD"
+DEVICE="Alioth"
 
 # The defconfig which should be used. Get it from config.gz from
 # your device or check source
-DEFCONFIG=X00TD_defconfig
+DEFCONFIG=vendor/alioth_defconfig
 
 # Show manufacturer info
-MANUFACTURERINFO="ASUSTek Computer Inc."
+MANUFACTURERINFO="Xiaomi."
 
 # Kernel Variant
-NAMA=Signature
+NAMA=Samsoe™
 
-JENIS=IV-R1
+JENIS=Local
 
-VARIAN=XPR
+VARIAN=2.3.4
 
 # Build Type
-BUILD_TYPE="Nightly"
+BUILD_TYPE="None"
 
 # Specify compiler.
 # 'clang' or 'clangxgcc' or 'gcc' or 'gcc49' , 'linaro & 'gcc2', clang2
-COMPILER=gcc49
+COMPILER=clang
 
 # Message on anykernel when installatio
-MESSAGE="Salam dari kota congyang"
+MESSAGE="Samsoe kernel for poco"
 
 # KBUILD ENV
-K_USER=Thoreck
-K_HOST=BOT_BUILDER
-K_VERSION=636
+K_USER=Avina
+K_HOST=Unix
+K_VERSION=2.3.4
 
 
 # arch & subarch
