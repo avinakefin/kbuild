@@ -246,7 +246,7 @@ tg_send_sticker() {
 ##----------------------------------------------------------------##
 
 tg_send_files(){
-    KernelFiles="$KERNEL_DIR/AnyKernel3/$ZIP_RELEASE.zip"
+    KernelFiles="$KERNEL_DIR/AnyKernel/$ZIP_RELEASE.zip"
 	MD5CHECK=$(md5sum "$KernelFiles" | cut -d' ' -f1)
 	SID="CAACAgUAAx0CR6Ju_gADT2DeeHjHQGd-79qVNI8aVzDBT_6tAAK8AQACwvKhVfGO7Lbi7poiIAQ"
 	STICK="CAACAgUAAx0CR6Ju_gADT2DeeHjHQGd-79qVNI8aVzDBT_6tAAK8AQACwvKhVfGO7Lbi7poiIAQ"
@@ -390,12 +390,12 @@ build_kernel() {
 
 gen_zip() {
 	msg "|| Zipping into a flashable zip ||"
-	mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
+	mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel/Image.gz-dtb
 	if [ $BUILD_DTBO = 1 ]
 	then
-		mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel3/dtbo.img
+		mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel/dtbo.img
 	fi
-	cd AnyKernel3 || exit
+	cd AnyKernel || exit
         cp -af anykernel-real.sh anykernel.sh
 	sed -i "s/kernel.string=.*/kernel.string=$NAMA-$VARIAN/g" anykernel.sh
 	sed -i "s/kernel.for=.*/kernel.for=$JENIS/g" anykernel.sh
@@ -404,7 +404,6 @@ gen_zip() {
 	sed -i "s/kernel.version=.*/kernel.version=$LINUXVER/g" anykernel.sh
 	sed -i "s/message.word=.*/message.word=$MESSAGE/g" anykernel.sh
 	sed -i "s/build.date=.*/build.date=$DATE2/g" anykernel.sh
-
 
 	zip -r9 "$ZIPNAME" * -x .git README.md anykernel-real.sh .gitignore zipsigner* *.zip
 
@@ -421,24 +420,9 @@ gen_zip() {
         📅 <b>Date</b>
         -<code>$DATE2</code>
         
-        🔖 <b>Linux Version</b>
-        -<code>$LINUXVER</code>
-        
-        💻 <b>CPU</b>
-        -<code>$CORE Cores</code>
-        -<code>$CPU_MODEL</code>
-        
-        🖥 <b>OS</b>
-        -<code>$OS_VERSION</code>
-        
          ⚙️ <b>Compiler</b>
         -<code>$KBUILD_COMPILER_STRING</code>
         
-       📱 <b>Device</b>
-        -<code>$DEVICE ($MANUFACTURERINFO)</code>
-         
-        📣 <b>Changelog</b>
-        - <code>$COMMIT_HEAD</code>
    
         #$BUILD_TYPE #$JENIS #$VARIAN"
         
