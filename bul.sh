@@ -115,28 +115,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	then
 		msg "|| Cloning clang ||"
 		git clone --depth=1 https://github.com/fajar4561/SignatureTC_Clang -b 15 clang
-		
-    elif [ $COMPILER = "clang2" ]
-    then
-        msg "|| Cloning clang ||"
-		git clone --depth=1 https://github.com/RyuujiX/SDClang -b 14 $KERNEL_DIR/clang
-		msg "|| Cloning Gcc 64 ||"
-		git clone --depth=1 https://github.com/RyuujiX/aarch64-linux-android-4.9/ -b android-12.0.0_r15 $KERNEL_DIR/gcc64 
-		msg "|| Cloning GCC 32  ||"
-		git clone --depth=1 https://github.com/RyuujiX/arm-linux-androideabi-4.9/ -b android-12.0.0_r15 $KERNEL_DIR/gcc32 
-	elif [ $COMPILER = "gcc49" ]
-	then
-		msg "|| Cloning GCC 64  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-android-4.9 $KERNEL_DIR/gcc64
-		msg "|| Cloning GCC 32  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-androideabi-4.9 $KERNEL_DIR/gcc32
-	elif [ $COMPILER = "gcc" ]
-	then
-		msg "|| Cloning GCC 64  ||"
-		git clone https://github.com/fajar4561/gcc-arm64.git $KERNEL_DIR/gcc64 --depth=1
-		msg "|| Cloning GCC 32  ||"
-        git clone https://github.com/fajar4561/gcc-arm.git $KERNEL_DIR/gcc32 --depth=1
-
+		   
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		msg "|| Cloning toolchain ||"
@@ -145,21 +124,6 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-gnu-1 -b stable-gcc gcc64
 		msg "|| Cloning GCC 32  ||"
 		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-gnueabi -b stable-gcc gcc32
-		
-	elif [ $COMPILER = "linaro" ]
-	then
-		msg "|| Cloning GCC 64  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-gnu -b linaro8-20190402 gcc64
-		msg "|| Cloning GCC 32  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-gnueabi -b stable-gcc gcc32
-		
-	elif [ $COMPILER = "gcc2" ]
-	then
-		msg "|| Cloning GCC 64  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-gnu -b gcc8-201903-A gcc64
-		msg "|| Cloning GCC 32  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-gnueabi -b stable-gcc gcc32
-	fi
 
 	# Toolchain Directory defaults to clang-llvm
 		TC_DIR=$KERNEL_DIR/clang
@@ -167,10 +131,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	# GCC Directory
 		GCC64_DIR=$KERNEL_DIR/gcc64
 		GCC32_DIR=$KERNEL_DIR/gcc32
-
-	msg "|| Cloning Anykernel ||"
-        git clone https://github.com/fajar4561/Anykernel.git -b master AnyKernel3
-
+		
 	if [ $BUILD_DTBO = 1 ]
 	then
 		msg "|| Cloning libufdt ||"
@@ -322,7 +283,7 @@ build_kernel() {
 	fi
 
 	msg "|| Started Compilation ||"
-	make O=out $DEFCONFIG
+	make O=out $KERNEL_DEFCONFIG
 	if [ $DEF_REG = 1 ]
 	then
 		cp .config arch/arm64/configs/$KERNEL_DEFCONFIG

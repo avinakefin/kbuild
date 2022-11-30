@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=12.1-aliot
+KERNEL_BRANCH=12.1-alioth
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
