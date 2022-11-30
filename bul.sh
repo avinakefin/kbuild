@@ -128,7 +128,10 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	# Toolchain Directory defaults to clang-llvm
 		TC_DIR=$KERNEL_DIR/clang
 
-	# GCC Directory
+        msg "|| Cloning Anykernel ||"
+                git clone https://avinakefin/AnyKernel AnyKernel
+	
+        # GCC Directory
 		GCC64_DIR=$KERNEL_DIR/gcc64
 		GCC32_DIR=$KERNEL_DIR/gcc32
 		
