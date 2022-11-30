@@ -35,6 +35,7 @@ jobs:
           TG_TOKEN: ${{ secrets.TOKEN }}
           KERNEL_SOURCE: ${{ secrets.KERNEL_SOURCE }}
           KERNEL_DEFCONFIG: ${{ secrets.KERNEL_DEFCONFIG }}
+          ZIPNAME: ${{ secrets.ZIPNAME }}
       - uses: yanzay/notify-telegram@v0.1.0
         if: always()
         with:
