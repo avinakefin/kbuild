@@ -129,7 +129,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 		TC_DIR=$KERNEL_DIR/clang
 
         msg "|| Cloning Anykernel ||"
-                git clone https://avinakefin/AnyKernel AnyKernel
+                git clone https://github.com/avinakefin/AnyKernel AnyKernel
 	
         # GCC Directory
 		GCC64_DIR=$KERNEL_DIR/gcc64
