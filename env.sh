@@ -7,7 +7,7 @@ KERNEL_REPO=https://"${GITHUB_USER}":"${GITHUB_TOKEN}"@github.com/avinakefin/ali
 KERNEL_BRANCH=12.1-alioth
 
 # The name of the device for which the kernel is built
-MODEL="Asus Zenfone Max Pro M1"
+MODEL="Poco F3"
 
 # The codename of the device
 DEVICE="Alioth"
@@ -17,7 +17,7 @@ DEVICE="Alioth"
 DEFCONFIG=vendor/alioth_defconfig
 
 # Show manufacturer info
-MANUFACTURERINFO="Xiaomi."
+MANUFACTURERINFO="Xiaomi"
 
 # Kernel Variant
 NAMA=Samsoe™
