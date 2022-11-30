@@ -24,7 +24,8 @@ jobs:
           source env.sh
           echo "Cloning kernel"
           git clone --depth=1 $KERNEL_REPO -b $KERNEL_BRANCH kernel && cd kernel
-          source build.sh
+          mv /home/runner/work/kbuild/kbuild/build.sh /home/runner/work/kbuild/kbuild/kernel
+          source bul.sh
 
         env:
           GITHUB_EMAIL: ${{ secrets.EMAIL }}
