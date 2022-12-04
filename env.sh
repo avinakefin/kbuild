@@ -19,11 +19,11 @@ DEVICE="alioth"
 MANUFACTURERINFO="Xioami"
 
 # Kernel Variant
-NAMA=Samsoe
+NAMA=Samsoe™-A12
 
 JENIS=MIUI-AOSP
 
-VARIAN=Stable
+VARIAN=StableFix
 
 # Build Type
 BUILD_TYPE="none"
