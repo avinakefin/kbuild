@@ -135,11 +135,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 		GCC64_DIR=$KERNEL_DIR/gcc64
 		GCC32_DIR=$KERNEL_DIR/gcc32
 		
-	if [ $BUILD_DTBO = 1 ]
-	then
-		msg "|| Cloning libufdt ||"
-		git clone https://android.googlesource.com/platform/system/libufdt "$KERNEL_DIR"/scripts/ufdt/libufdt
-	fi
+
 }
 
 ##----------------------------------------------------------##
