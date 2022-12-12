@@ -23,7 +23,7 @@ NAMA=Samsoe™-A12
 
 JENIS=MIUI-AOSP
 
-VARIAN=1.2
+VARIAN=1.3
 
 # Build Type
 BUILD_TYPE="none"
