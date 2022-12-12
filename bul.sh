@@ -351,8 +351,9 @@ build_kernel() {
 		make -j"$PROCS" O=out \
 		CC=clang \
 		CROSS_COMPILE=aarch64-linux-gnu- \
-	    CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+	    CROSS_COMPILE_COMPAT=arm-linux-gnueabi- \
 	    AR=llvm-ar \
+	    LD="ld.lld" \
         NM=llvm-nm \
         OBJCOPY=llvm-objcopy \
         OBJDUMP=llvm-objdump \
@@ -399,8 +400,6 @@ build_kernel() {
 				"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clangxgcc" ]
 	then
-        scripts/config --file ${OUT_DIR}/.config \
-                --set-str STATIC_USERMODEHELPER_PATH /system/bin/micd
 	    make -kj$(nproc --all) O=out \
 		ARCH=arm64 \
 	       LLVM=1 \

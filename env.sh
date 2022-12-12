@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=stable
+KERNEL_BRANCH=alioth_miui
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
@@ -30,7 +30,7 @@ BUILD_TYPE="none"
 
 # Specify compiler.
 # 'clang' or 'clangxgcc' or 'gcc' or 'gcc49' , 'linaro & 'gcc2', clang2
-COMPILER=clangxgcc
+COMPILER=clang
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
