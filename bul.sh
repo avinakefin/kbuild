@@ -335,12 +335,12 @@ build_kernel() {
 	fi
 
 	msg "|| Started Compilation ||"
-	make O=out $DEFCONFIG
+	make O=out $KERNEL_DEFCONFIG
 	if [ $DEF_REG = 1 ]
 	then
-		cp .config arch/arm64/configs/$DEFCONFIG
-		git add arch/arm64/configs/$DEFCONFIG
-		git commit -m "$DEFCONFIG: Regenerate
+		cp .config arch/arm64/configs/$KERNEL_DEFCONFIG
+		git add arch/arm64/configs/$KERNEL_DEFCONFIG
+		git commit -m "$KERNEL_DEFCONFIG: Regenerate
 						This is an auto-generated commit"
 	fi
 
