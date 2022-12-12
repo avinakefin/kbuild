@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=main
+KERNEL_BRANCH=12.1-alioth
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
@@ -23,7 +23,7 @@ NAMA=Samsoe™-A12
 
 JENIS=MIUI-AOSP
 
-VARIAN=StableFix
+VARIAN=1.2
 
 # Build Type
 BUILD_TYPE="none"
