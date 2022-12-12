@@ -113,81 +113,42 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	echo " "
 	if [ $COMPILER = "clang" ]
 	then
-		msg "|| Cloning clang ||"
-		git clone --depth=1 https://github.com/fajar4561/SignatureTC_Clang -b 15 clang
-		
-    elif [ $COMPILER = "clang2" ]
-    then
-        msg "|| Cloning clang ||"
-		git clone --depth=1 https://github.com/RyuujiX/SDClang -b 14 $KERNEL_DIR/clang
-		msg "|| Cloning Gcc 64 ||"
-		git clone --depth=1 https://github.com/RyuujiX/aarch64-linux-android-4.9/ -b android-12.0.0_r15 $KERNEL_DIR/gcc64 
-		msg "|| Cloning GCC 32  ||"
-		git clone --depth=1 https://github.com/RyuujiX/arm-linux-androideabi-4.9/ -b android-12.0.0_r15 $KERNEL_DIR/gcc32 
-	elif [ $COMPILER = "gcc49" ]
+		elif [ $COMPILER = "aosp" ];
 	then
-		msg "|| Cloning GCC 64  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-android-4.9 $KERNEL_DIR/gcc64
-		msg "|| Cloning GCC 32  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-androideabi-4.9 $KERNEL_DIR/gcc32
-	elif [ $COMPILER = "gcc" ]
-	then
-		msg "|| Cloning GCC 64  ||"
-		git clone https://github.com/fajar4561/gcc-arm64.git $KERNEL_DIR/gcc64 --depth=1
-		msg "|| Cloning GCC 32  ||"
-        git clone https://github.com/fajar4561/gcc-arm.git $KERNEL_DIR/gcc32 --depth=1
-
-	elif [ $COMPILER = "clangxgcc" ]
+	echo "* Checking if Aosp Clang is already cloned..."
+	if [ -d clangB ]; then
+	  echo "××××××××××××××××××××××××××××"
+	  echo "  Already Cloned Aosp Clang"
+	  echo "××××××××××××××××××××××××××××"
+	else
+	export CLANG_VERSION="clang-r468909b"
+	echo "* It's not cloned, cloning it..."
+        mkdir clangB
+        cd clangB || exit
+	wget -q https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master/${CLANG_VERSION}.tgz
+        tar -xf ${CLANG_VERSION}.tgz
+        cd .. || exit
+	git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git --depth=1 gcc
+	git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9.git  --depth=1 gcc32
+	fi
+	PATH="${KERNEL_DIR}/clangB/bin:${KERNEL_DIR}/gcc/bin:${KERNEL_DIR}/gcc32/bin:${PATH}"
+	
+	elif [ $COMPILER = "proton" ]
 	then
 		msg "|| Cloning toolchain ||"
-		git clone --depth=1 https://github.com/Thoreck-project/DragonTC -b 10.0 clang
-		msg "|| Cloning GCC 64  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-gnu-1 -b stable-gcc gcc64
-		msg "|| Cloning GCC 32  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-gnueabi -b stable-gcc gcc32
-		
-	elif [ $COMPILER = "linaro" ]
-	then
-		msg "|| Cloning GCC 64  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-gnu -b linaro8-20190402 gcc64
-		msg "|| Cloning GCC 32  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-gnueabi -b stable-gcc gcc32
-		
-	elif [ $COMPILER = "gcc2" ]
-	then
-		msg "|| Cloning GCC 64  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-gnu -b gcc8-201903-A gcc64
-		msg "|| Cloning GCC 32  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-gnueabi -b stable-gcc gcc32
-	fi
-
+git clone --depth=1  https://github.com/kdrag0n/proton-clang.git clang
+        fi
 	# Toolchain Directory defaults to clang-llvm
 		TC_DIR=$KERNEL_DIR/clang
 
-	# GCC Directory
+        msg "|| Cloning Anykernel ||"
+                git clone https://github.com/avinakefin/AnyKernel AnyKernel
+	
+        # GCC Directory
 		GCC64_DIR=$KERNEL_DIR/gcc64
 		GCC32_DIR=$KERNEL_DIR/gcc32
+		
 
-	    if [ $HMP = "y" ]
-	    then
-	       msg "|| Cloning Anykerne For HMP ||"
-           git clone https://github.com/fajar4561/Anykernel.git -b master AnyKernel3
-        elif [ $HMP = "n" ]
-        then
-           msg "|| Cloning Anykerne For EAS ||"
-           git clone https://github.com/fajar4561/Anykernel.git -b eas AnyKernel3
-        fi
-        
-	if [ $BUILD_DTBO = 1 ]
-	then
-		msg "|| Cloning libufdt ||"
-		git clone https://android.googlesource.com/platform/system/libufdt "$KERNEL_DIR"/scripts/ufdt/libufdt
-	fi
-	if [ $SPECTRUM = "y" ]
-	then
-	   msg "|| Cloning Spectrum Profil ||"
-	   git clone https://"${GITHUB_USER}":"${GITHUB_TOKEN}"@github.com/fajar4561/spectrum spectrum
-	fi
 }
 
 ##----------------------------------------------------------##
@@ -206,18 +167,17 @@ setversioning() {
 exports() {
 	export KBUILD_BUILD_USER=$K_USER
     export KBUILD_BUILD_HOST=$K_HOST
-    export KBUILD_BUILD_VERSION=$K_VERSION
 	export ARCH=$K_ARCH
 	export SUBARCH=$K_SUBARCH
 
-	if [ $COMPILER = "clang" ]
+	if [ $COMPILER = "proton" ]
 	then
 		KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
 		PATH=$TC_DIR/bin/:$PATH
-	elif [ $COMPILER = "clang2" ]
+	elif [ $COMPILER = "clang" ]
 	then
 	    KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
-	    PATH=$TC_DIR/bin:/$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
+		PATH=$TC_DIR/bin/:$PATH
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
@@ -295,7 +255,7 @@ tg_send_sticker() {
 ##----------------------------------------------------------------##
 
 tg_send_files(){
-    KernelFiles="$KERNEL_DIR/AnyKernel3/$ZIP_RELEASE.zip"
+    KernelFiles="$KERNEL_DIR/AnyKernel/$ZIP_RELEASE.zip"
 	MD5CHECK=$(md5sum "$KernelFiles" | cut -d' ' -f1)
 	SID="CAACAgUAAx0CR6Ju_gADT2DeeHjHQGd-79qVNI8aVzDBT_6tAAK8AQACwvKhVfGO7Lbi7poiIAQ"
 	STICK="CAACAgUAAx0CR6Ju_gADT2DeeHjHQGd-79qVNI8aVzDBT_6tAAK8AQACwvKhVfGO7Lbi7poiIAQ"
@@ -335,18 +295,18 @@ build_kernel() {
 	fi
 
 	msg "|| Started Compilation ||"
-	make O=out $DEFCONFIG
+	make O=out $KERNEL_DEFCONFIG
 	if [ $DEF_REG = 1 ]
 	then
-		cp .config arch/arm64/configs/$DEFCONFIG
-		git add arch/arm64/configs/$DEFCONFIG
-		git commit -m "$DEFCONFIG: Regenerate
+		cp .config arch/arm64/configs/$KERNEL_DEFCONFIG
+		git add arch/arm64/configs/$KERNEL_DEFCONFIG
+		git commit -m "$KERNEL_DEFCONFIG: Regenerate
 						This is an auto-generated commit"
 	fi
 
 	BUILD_START=$(date +"%s")
 
-	if [ $COMPILER = "clang" ]
+	if [ $COMPILER = "proton" ]
 	then
 		make -j"$PROCS" O=out \
 		CC=clang \
@@ -356,18 +316,19 @@ build_kernel() {
         NM=llvm-nm \
         OBJCOPY=llvm-objcopy \
         OBJDUMP=llvm-objdump \
-        CLANG_TRIPLE=aarch64-linux-gnu- \
 		STRIP=llvm-strip \
 		 "${MAKE[@]}" 2>&1 | tee build.log
-	elif [ $COMPILER = "clang2" ]
+	elif [ $COMPILER = "clang" ]
 	then
 	   make -j"$PROCS" O=out \
 	   CC=clang \
 	   CROSS_COMPILE_ARM32=arm-linux-androideabi- \
 	   CROSS_COMPILE=aarch64-linux-android- \
-	   CLANG_TRIPLE=aarch64-linux-gnu- \
-	   HOSTCC=gcc \
-       HOSTCXX=g++ \
+	   AR=llvm-ar \
+        NM=llvm-nm \
+        OBJCOPY=llvm-objcopy \
+        OBJDUMP=llvm-objdump \
+		STRIP=llvm-strip \
 	   "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "gcc49" ]
 	then
@@ -399,16 +360,17 @@ build_kernel() {
 				"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clangxgcc" ]
 	then
-        scripts/config --file ${OUT_DIR}/.config \
-                --set-str STATIC_USERMODEHELPER_PATH /system/bin/micd
-	    make -kj$(nproc --all) O=out \
-		ARCH=arm64 \
-	       LLVM=1 \
-	       LLVM_IAS=1 \
-	       CLANG_TRIPLE=aarch64-linux-gnu- \
-	       CROSS_COMPILE=aarch64-linux-android- \
-	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
-	       "${MAKE[@]}" 2>&1 | tee build.log
+		make -j"$PROCS"  O=out \
+					CC=clang \
+					CROSS_COMPILE=aarch64-linux-gnu- \
+					CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
+					AR=llvm-ar \
+                    NM=llvm-nm \
+                    OBJCOPY=llvm-objcopy \
+                    OBJDUMP=llvm-objdump \
+                    CLANG_TRIPLE=aarch64-linux-gnu- \
+				    STRIP=llvm-strip \
+				     "${MAKE[@]}" 2>&1 | tee build.log
 	fi
 
 		BUILD_END=$(date +"%s")
@@ -438,30 +400,13 @@ build_kernel() {
 
 gen_zip() {
 	msg "|| Zipping into a flashable zip ||"
-	mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
-	# tambahkan changelogs
-	if [ $CHANGELOGS = "y" ]
-	then
-		mv "$KERNEL_DIR"/changelogs AnyKernel3/changelogs
-	fi
-	# tambahkan spectrum
-	if [ $SPECTRUM = "y" ]
-        then
-           if [ $HMP = "y" ]
-           then
-              cp -af  "$KERNEL_DIR"/spectrum/hmp AnyKernel3/spectrum/init.spectrum.rc
-           else
-              cp -af  "$KERNEL_DIR"/spectrum/eas AnyKernel3/spectrum/init.spectrum.rc
-           fi
-    fi
-	
+	mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel/Image.gz-dtb
 	if [ $BUILD_DTBO = 1 ]
 	then
-		mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel3/dtbo.img
+		mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel/dtbo.img
 	fi
-	cd AnyKernel3 || exit
+	cd AnyKernel || exit
         cp -af anykernel-real.sh anykernel.sh
-        
 	sed -i "s/kernel.string=.*/kernel.string=$NAMA-$VARIAN/g" anykernel.sh
 	sed -i "s/kernel.for=.*/kernel.for=$JENIS/g" anykernel.sh
 	sed -i "s/kernel.compiler=.*/kernel.compiler=$KBUILD_COMPILER_STRING/g" anykernel.sh
@@ -469,7 +414,6 @@ gen_zip() {
 	sed -i "s/kernel.version=.*/kernel.version=$LINUXVER/g" anykernel.sh
 	sed -i "s/message.word=.*/message.word=$MESSAGE/g" anykernel.sh
 	sed -i "s/build.date=.*/build.date=$DATE2/g" anykernel.sh
-
 
 	zip -r9 "$ZIPNAME" * -x .git README.md anykernel-real.sh .gitignore zipsigner* *.zip
 
@@ -486,24 +430,9 @@ gen_zip() {
         📅 <b>Date</b>
         -<code>$DATE2</code>
         
-        🔖 <b>Linux Version</b>
-        -<code>$LINUXVER</code>
-        
-        💻 <b>CPU</b>
-        -<code>$CORE Cores</code>
-        -<code>$CPU_MODEL</code>
-        
-        🖥 <b>OS</b>
-        -<code>$OS_VERSION</code>
-        
          ⚙️ <b>Compiler</b>
         -<code>$KBUILD_COMPILER_STRING</code>
         
-       📱 <b>Device</b>
-        -<code>$DEVICE ($MANUFACTURERINFO)</code>
-         
-        📣 <b>Changelog</b>
-        - <code>$COMMIT_HEAD</code>
    
         #$BUILD_TYPE #$JENIS #$VARIAN"
         
