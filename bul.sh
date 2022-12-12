@@ -116,9 +116,10 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 		msg "|| Cloning clang ||"
 		git clone --depth=1 https://github.com/fajar4561/SignatureTC_Clang -b 15 clang
 		   
-	elif [ $COMPILER = "clangxgcc" ]
+	elif [ $COMPILER = "proton" ]
 	then
 		msg "|| Cloning toolchain ||"
+git clone --depth=1  https://github.com/kdrag0n/proton-clang.git clang
         fi
 	# Toolchain Directory defaults to clang-llvm
 		TC_DIR=$KERNEL_DIR/clang
@@ -152,14 +153,14 @@ exports() {
 	export ARCH=$K_ARCH
 	export SUBARCH=$K_SUBARCH
 
-	if [ $COMPILER = "clang" ]
+	if [ $COMPILER = "proton" ]
 	then
 		KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
 		PATH=$TC_DIR/bin/:$PATH
-	elif [ $COMPILER = "clang2" ]
+	elif [ $COMPILER = "clang" ]
 	then
 	    KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
-	    PATH=$TC_DIR/bin:/$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
+		PATH=$TC_DIR/bin/:$PATH
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
@@ -288,7 +289,7 @@ build_kernel() {
 
 	BUILD_START=$(date +"%s")
 
-	if [ $COMPILER = "clang" ]
+	if [ $COMPILER = "proton" ]
 	then
 		make -j"$PROCS" O=out \
 		CC=clang \
@@ -298,18 +299,19 @@ build_kernel() {
         NM=llvm-nm \
         OBJCOPY=llvm-objcopy \
         OBJDUMP=llvm-objdump \
-        CLANG_TRIPLE=aarch64-linux-gnu- \
 		STRIP=llvm-strip \
 		 "${MAKE[@]}" 2>&1 | tee build.log
-	elif [ $COMPILER = "clang2" ]
+	elif [ $COMPILER = "clang" ]
 	then
 	   make -j"$PROCS" O=out \
 	   CC=clang \
 	   CROSS_COMPILE_ARM32=arm-linux-androideabi- \
 	   CROSS_COMPILE=aarch64-linux-android- \
-	   CLANG_TRIPLE=aarch64-linux-gnu- \
-	   HOSTCC=gcc \
-       HOSTCXX=g++ \
+	   AR=llvm-ar \
+        NM=llvm-nm \
+        OBJCOPY=llvm-objcopy \
+        OBJDUMP=llvm-objdump \
+		STRIP=llvm-strip \
 	   "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "gcc49" ]
 	then
