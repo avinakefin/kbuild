@@ -353,7 +353,6 @@ build_kernel() {
 		CROSS_COMPILE=aarch64-linux-gnu- \
 	    CROSS_COMPILE_COMPAT=arm-linux-gnueabi- \
 	    AR=llvm-ar \
-	    LD="ld.lld" \
         NM=llvm-nm \
         OBJCOPY=llvm-objcopy \
         OBJDUMP=llvm-objdump \
