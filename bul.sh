@@ -168,25 +168,13 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 		GCC64_DIR=$KERNEL_DIR/gcc64
 		GCC32_DIR=$KERNEL_DIR/gcc32
 
-	    if [ $HMP = "y" ]
-	    then
-	       msg "|| Cloning Anykerne For HMP ||"
-           git clone https://github.com/fajar4561/Anykernel.git -b master AnyKernel3
-        elif [ $HMP = "n" ]
-        then
-           msg "|| Cloning Anykerne For EAS ||"
-           git clone https://github.com/fajar4561/Anykernel.git -b eas AnyKernel3
-        fi
+	    msg "|| Cloning Anykernel ||"
+                git clone https://github.com/avinakefin/AnyKernel AnyKernel3
         
 	if [ $BUILD_DTBO = 1 ]
 	then
 		msg "|| Cloning libufdt ||"
 		git clone https://android.googlesource.com/platform/system/libufdt "$KERNEL_DIR"/scripts/ufdt/libufdt
-	fi
-	if [ $SPECTRUM = "y" ]
-	then
-	   msg "|| Cloning Spectrum Profil ||"
-	   git clone https://"${GITHUB_USER}":"${GITHUB_TOKEN}"@github.com/fajar4561/spectrum spectrum
 	fi
 }
 
@@ -437,22 +425,13 @@ build_kernel() {
 gen_zip() {
 	msg "|| Zipping into a flashable zip ||"
 	mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
-	# tambahkan changelogs
+	mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel3/dtbo.img
+        # tambahkan changelogs
 	if [ $CHANGELOGS = "y" ]
 	then
 		mv "$KERNEL_DIR"/changelogs AnyKernel3/changelogs
 	fi
-	# tambahkan spectrum
-	if [ $SPECTRUM = "y" ]
-        then
-           if [ $HMP = "y" ]
-           then
-              cp -af  "$KERNEL_DIR"/spectrum/hmp AnyKernel3/spectrum/init.spectrum.rc
-           else
-              cp -af  "$KERNEL_DIR"/spectrum/eas AnyKernel3/spectrum/init.spectrum.rc
-           fi
-    fi
-	
+
 	if [ $BUILD_DTBO = 1 ]
 	then
 		mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel3/dtbo.img
