@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=alioth_miui
+KERNEL_BRANCH=stable
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
