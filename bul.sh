@@ -235,13 +235,11 @@ exports() {
 	then
 		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-gnu-gcc --version | head -n 1 )
 		PATH=$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
-	fi
-    elif [ $COMPILER = "aosp" ]
+        elif [ $COMPILER = "aosp" ]
 	then
 		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-gnu-gcc --version | head -n 1 )
 		PATH="${KERNEL_DIR}/clangB/bin:${KERNEL_DIR}/gcc/bin:${KERNEL_DIR}/gcc32/bin:${PATH}"
-		fi
-  
+	fi
   
 	if [ $LTO = "1" ];then
 		export LD=ld.lld
