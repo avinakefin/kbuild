@@ -161,13 +161,10 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-gnueabi -b stable-gcc gcc32
 	elif [ $COMPILER = "aosp" ]
 	then
-         mkdir clangB
-        cd clangB || exit
-	wget -q https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master/${CLANG_VERSION}.tgz
-        tar -xf ${CLANG_VERSION}.tgz
-        cd .. || exit
-	git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git --depth=1 gcc
-	git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9.git  --depth=1 gcc32
+         msg "|| Cloning GCC 64  ||"
+         git clone --depth=1 https://github.com/avinakefin/androidTC -b main clang
+	     git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git --depth=1 gcc64
+	     git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9.git  --depth=1 gcc32
 	fi
 
 	# Toolchain Directory defaults to clang-llvm
@@ -411,12 +408,8 @@ build_kernel() {
 
 	 elif [ $COMPILER ="aosp" ] 
 	 then
-               make O=out CC=clang ARCH=arm64 ${DEFCONFIG}
-		   if [ "$METHOD" = "lto" ]; then
-		     scripts/config --file ${OUT_DIR}/.config \
-              -e LTO_CLANG
-           fi
-               make -kj$(nproc --all) O=out \
+	       make -kj$(nproc --all) O=out ${DEFCONFIG} \
+	       CC=clang \
 	       ARCH=arm64 \
 	       LLVM=1 \
 	       LLVM_IAS=1 \
