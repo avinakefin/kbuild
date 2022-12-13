@@ -160,6 +160,16 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 		msg "|| Cloning GCC 32  ||"
 		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-gnueabi -b stable-gcc gcc32
 	fi
+	elif [$COMPILER ="aosp" ]
+	then
+         mkdir clangB
+        cd clangB || exit
+	wget -q https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master/${CLANG_VERSION}.tgz
+        tar -xf ${CLANG_VERSION}.tgz
+        cd .. || exit
+	git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git --depth=1 gcc
+	git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9.git  --depth=1 gcc32
+	fi
 
 	# Toolchain Directory defaults to clang-llvm
 		TC_DIR=$KERNEL_DIR/clang
@@ -227,7 +237,13 @@ exports() {
 		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-gnu-gcc --version | head -n 1 )
 		PATH=$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
 	fi
-
+    elif [ $COMPILER = "aosp" ]
+	then
+		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-gnu-gcc --version | head -n 1 )
+		PATH="${KERNEL_DIR}/clangB/bin:${KERNEL_DIR}/gcc/bin:${KERNEL_DIR}/gcc32/bin:${PATH}"
+		fi
+  
+  
 	if [ $LTO = "1" ];then
 		export LD=ld.lld
         export LD_LIBRARY_PATH=$TC_DIR/lib
@@ -396,6 +412,23 @@ build_kernel() {
 	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
 	       "${MAKE[@]}" 2>&1 | tee build.log
 	fi
+
+	elif [ $COMPILER ="aosp" ];
+           
+           make O=out CC=clang ARCH=arm64 ${DEFCONFIG}
+		   if [ "$METHOD" = "lto" ]; then
+		     scripts/config --file ${OUT_DIR}/.config \
+             -e LTO_CLANG
+           fi
+           make -kj$(nproc --all) O=out \
+	       ARCH=arm64 \
+	       LLVM=1 \
+	       LLVM_IAS=1 \
+	       CLANG_TRIPLE=aarch64-linux-gnu- \
+	       CROSS_COMPILE=aarch64-linux-android- \
+	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
+	       "${MAKE[@]}" 2>&1 | tee build.log
+         fi
 
 		BUILD_END=$(date +"%s")
 		DIFF=$((BUILD_END - BUILD_START))
