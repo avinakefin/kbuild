@@ -408,16 +408,15 @@ build_kernel() {
 	       CROSS_COMPILE=aarch64-linux-android- \
 	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
 	       "${MAKE[@]}" 2>&1 | tee build.log
-	fi
 
-	elif [ $COMPILER ="aosp" ];
-           
-           make O=out CC=clang ARCH=arm64 ${DEFCONFIG}
+	 elif [ $COMPILER ="aosp" ] 
+	 then
+               make O=out CC=clang ARCH=arm64 ${DEFCONFIG}
 		   if [ "$METHOD" = "lto" ]; then
 		     scripts/config --file ${OUT_DIR}/.config \
-             -e LTO_CLANG
+              -e LTO_CLANG
            fi
-           make -kj$(nproc --all) O=out \
+               make -kj$(nproc --all) O=out \
 	       ARCH=arm64 \
 	       LLVM=1 \
 	       LLVM_IAS=1 \
@@ -425,7 +424,7 @@ build_kernel() {
 	       CROSS_COMPILE=aarch64-linux-android- \
 	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
 	       "${MAKE[@]}" 2>&1 | tee build.log
-         fi
+           fi
 
 		BUILD_END=$(date +"%s")
 		DIFF=$((BUILD_END - BUILD_START))
