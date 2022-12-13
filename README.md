@@ -1,1 +1,1 @@
-Sudah lelah saya
+Sudah lelah saya gan
