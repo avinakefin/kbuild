@@ -68,7 +68,7 @@ PTTG=1
 DEF_REG=0
 
 # Files/artifacts
-FILES=Image.gz-dtb
+FILES=Image
 
 # Build dtbo.img (select this only if your source has support to building dtbo.img)
 # 1 is YES | 0 is NO(default)
@@ -240,7 +240,7 @@ exports() {
         elif [ $COMPILER = "aosp" ]
 	then
 		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-gnu-gcc --version | head -n 1 )
-		PATH="${KERNEL_DIR}/clangB/bin:${KERNEL_DIR}/gcc/bin:${KERNEL_DIR}/gcc32/bin:${PATH}"
+		PATH=$TC_DIR/bin:/$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
 	fi
   
 	if [ $LTO = "1" ];then
@@ -411,7 +411,7 @@ build_kernel() {
 	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
 	       "${MAKE[@]}" 2>&1 | tee build.log
 
-	 elif [ $COMPILER ="aosp" ] 
+	 elif [ $COMPILER = "aosp" ] 
 	 then
 	       make -kj$(nproc --all) O=out ARCH=arm64 ${DEFCONFIG} \
 	       CC=clang \
