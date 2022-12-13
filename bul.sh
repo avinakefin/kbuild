@@ -159,8 +159,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-gnu -b gcc8-201903-A gcc64
 		msg "|| Cloning GCC 32  ||"
 		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-gnueabi -b stable-gcc gcc32
-	fi
-	elif [$COMPILER ="aosp" ]
+	elif [ $COMPILER = "aosp" ]
 	then
          mkdir clangB
         cd clangB || exit
