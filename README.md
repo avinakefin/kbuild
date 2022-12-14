@@ -1,2 +1,1 @@
-Sudah lelah saya gan
-tapi
+Sudah lelah saya gan tapi
