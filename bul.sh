@@ -452,8 +452,10 @@ gen_zip() {
 	msg "|| Zipping into a flashable zip ||"
 	
         if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img ]
+        then
             mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel3/dtbo.img
             mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
+        fi
         else 
             mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
         fi
