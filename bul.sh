@@ -451,6 +451,7 @@ build_kernel() {
 gen_zip() {
 	msg "|| Zipping into a flashable zip ||"
 	mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
+        mv "$KERNEL_DIR"/out/arch/arm64/boot/DTBO.img AnyKernel3/dtbo.img
 
 	cd AnyKernel3 || exit
         cp -af anykernel-real.sh anykernel.sh
@@ -473,22 +474,9 @@ gen_zip() {
         🔖 <b>Linux Version</b>
         -<code>$LINUXVER</code>
         
-        💻 <b>CPU</b>
-        -<code>$CORE Cores</code>
-        -<code>$CPU_MODEL</code>
-        
-        🖥 <b>OS</b>
-        -<code>$OS_VERSION</code>
-        
          ⚙️ <b>Compiler</b>
         -<code>$KBUILD_COMPILER_STRING</code>
-        
-       📱 <b>Device</b>
-        -<code>$DEVICE ($MANUFACTURERINFO)</code>
          
-        📣 <b>Changelog</b>
-        - <code>$COMMIT_HEAD</code>
-   
         #$BUILD_TYPE #$JENIS #$VARIAN"
         
 	cd ..
