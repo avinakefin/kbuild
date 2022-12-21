@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=12.0-alioth
+KERNEL_BRANCH=12.1-alioth
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
@@ -30,7 +30,7 @@ BUILD_TYPE="beta"
 
 # Specify compiler.
 # 'clang' or 'clangxgcc' or 'gcc' or 'gcc49' , 'linaro & 'gcc2', clang2
-COMPILER=aosp
+COMPILER=clang
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
