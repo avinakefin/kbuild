@@ -1,1 +1,1 @@
-Sudah lelah saya gan tapi hadeh
+Sudah lelah saya gan tapi
