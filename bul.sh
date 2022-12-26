@@ -467,11 +467,11 @@ gen_zip() {
 
         if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom/kona.dts]
         then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom/kona.dts AnyKernel3/kona.dts
+            mv "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom/kona-v2.dtb AnyKernel3/kona-v2.dtb
 
-        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom-base/kona.dts]
+        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom/kona.dtb]
         then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom/kona.dts AnyKernel3/kona.dts
+            mv "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom/kona.dtb AnyKernel3/kona.dtb
         fi
 
 	cd AnyKernel3 || exit
