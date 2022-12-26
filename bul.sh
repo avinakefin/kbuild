@@ -69,8 +69,6 @@ DEF_REG=0
 
 # Files/artifacts
 FILES=Image
-dts="out/arch/arm64/boot/dts/vendor/qcom-base/kona.dts"
-dts1="out/arch/arm64/boot/dts/vendor/qcom/kona.dts"
 
 # Build dtbo.img (select this only if your source has support to building dtbo.img)
 # 1 is YES | 0 is NO(default)
@@ -467,13 +465,13 @@ gen_zip() {
             mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
         fi
 
-        if [ -f "$dts"]
+        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom/kona.dts]
         then
-            mv "$dts" AnyKernel3/dtb-kona
+            mv "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom/kona.dts AnyKernel3/kona.dts
 
-        elif [ -f "$dts1"]
+        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom-base/kona.dts]
         then
-            mv "$dts1" AnyKernel3/dtb-kona
+            mv "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom/kona.dts AnyKernel3/kona.dts
         fi
 
 	cd AnyKernel3 || exit
