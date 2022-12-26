@@ -456,31 +456,30 @@ gen_zip() {
             mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel3/dtbo.img
         fi
     
-        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image ]
-        then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/Image AnyKernel3/Image
-    
-        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb ]
+        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb ]
         then
             mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
+    
+        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image ]
+        then
+            mv "$KERNEL_DIR"/out/arch/arm64/boot/Image AnyKernel3/Image
         fi
 
-        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom-base/kona-v2.dtb]
+        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona-v2.dtb]
         then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom-base/kona-v2.dtb AnyKernel3/kona-v2.dtb
+            mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona-v2.dtb AnyKernel3/kona-v2.dtb
 
-        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom-base/kona.dtb]
+        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona.dtb]
         then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom-base/kona.dtb AnyKernel3/kona.dtb
+            mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona.dtb AnyKernel3/kona.dtb
 
-        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/vendor/kona-v2.dtb]
+        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona-v2.dtb]
         then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/vendor/kona-v2.dtb AnyKernel3/kona-v2.dtb
+            mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom/kona.dtb AnyKernel3/kona.dtb
 
-        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/vendor/qcom-base/kona.dtb]
+        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom/kona-v2.dtb]
         then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/vendor/kona.dtb AnyKernel3/kona.dtb
-
+            mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom/kona-v2.dtb AnyKernel3/kona-v2.dtb
         fi
 
 	cd AnyKernel3 || exit
