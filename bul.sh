@@ -467,13 +467,13 @@ gen_zip() {
             mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
         fi
 
-        if [ -f "$dts]
+        if [ -f "$dts"]
         then
-            mv "$dts AnyKernel3/dtb-kona
+            mv "$dts" AnyKernel3/dtb-kona
 
-        elif [ -f "$dts1]
+        elif [ -f "$dts1"]
         then
-            mv "$dts1 AnyKernel3/dtb-kona
+            mv "$dts1" AnyKernel3/dtb-kona
         fi
 
 	cd AnyKernel3 || exit
