@@ -19,7 +19,7 @@ DEVICE="alioth"
 MANUFACTURERINFO="Xioami"
 
 # Kernel Variant
-NAMA=Samsoe-1.6-Lzo
+NAMA=Samsoe-1.7-Lzo
 
 JENIS=MIUI-AOSP
 
