@@ -7,10 +7,10 @@ KERNEL_REPO=$KERNEL_SOURCE
 KERNEL_BRANCH=12.0-alioth
 
 # The name of the device for which the kernel is built
-MODEL="Poco F3"
+MODEL="Poco F4"
 
 # The codename of the device
-DEVICE="alioth"
+DEVICE="munch"
 
 # The defconfig which should be used. Get it from config.gz from
 # your device or check source
@@ -19,9 +19,9 @@ DEVICE="alioth"
 MANUFACTURERINFO="Xioami"
 
 # Kernel Variant
-NAMA=Yaknah-3
+NAMA=Yaknah
 
-JENIS=MIUI-AOSP
+JENIS=AOSP
 
 VARIAN=1.2
 
