@@ -433,8 +433,7 @@ build_kernel() {
 	       "${MAKE[@]}" 2>&1 | tee build.log
         elif [ $COMPILER = "miui" ]
         then 
-             make ${DEFCONFIG} O=out CC=clang
-             make -j$(nproc --all) O=out \
+             make -j$(nproc --all) O=out ARCH=arm64 ${DEFCONFIG} \
                       ARCH=arm64 \
                       CC=clang \
                       CROSS_COMPILE=aarch64-linux-gnu- \
