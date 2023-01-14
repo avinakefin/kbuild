@@ -69,9 +69,8 @@ DEF_REG=0
 
 # Files/artifacts
 FILES=Image
-OUT_DIR=out/
-dts_source=arch/arm64/boot/dts/vendor/qcom
 DTBO=$(pwd)/out/arch/arm64/boot/dtbo.img
+DTB=$KERNEL_DIR/out/arch/arm64/boot/dtb
 
 # Build dtbo.img (select this only if your source has support to building dtbo.img)
 # 1 is YES | 0 is NO(default)
@@ -432,8 +431,6 @@ build_kernel() {
 		if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/$FILES ]
 		then
 			msg "|| Kernel successfully compiled ||"
-                        find ${OUT_DIR}/$dts_source -name '*.dtb' -exec cat {} + >${OUT_DIR}/arch/arm64/boot/dtb
-		        DTB=$(pwd)/out/arch/arm64/boot/dtb
 
 			if [ $BUILD_DTBO = 1 ]
 			then
@@ -487,6 +484,12 @@ gen_zip() {
         elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom/kona-v2.dtb]
         then
             mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom/kona-v2.dtb AnyKernel3/kona-v2.dtb
+        fi
+
+        find $KERNEL_DIR/out/arch/arm64/boot/dts/vendor/qcom -name '*.dtb' -exec cat {} + >$KERNEL_DIR/out/arch/arm64/boot/dtb
+        if [ -f "$dtb" ]
+        then
+          mv "$dtb AnyKernel3/dtb'
         fi
 
 	cd AnyKernel3 || exit
