@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=munch_mi
+KERNEL_BRANCH=munch-mi
 
 # The name of the device for which the kernel is built
 MODEL="Poco F4"
