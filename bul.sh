@@ -172,7 +172,11 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	       cd /home/runner/work/kbuild/kbuild/kernel
 	       git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git --depth=1 gcc64
 	       git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9.git --depth=1 gcc32
-	fi
+	elif [$COMPILER ="miui" ]
+        then
+              msg "|| Clone miui || "
+              git clone https://gitlab.com/ZyCromerZ/clang.git --depth=1 --single-branch clang
+        fi
 
 	# Toolchain Directory defaults to clang-llvm
 		TC_DIR=$KERNEL_DIR/clang
@@ -243,7 +247,11 @@ exports() {
 	then
 		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-gnu-gcc --version | head -n 1 )
 		PATH=$TC_DIR/bin:/$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
-	fi
+	elif [$COMPILER ="miui"]
+        then
+           KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
+          
+        fi
   
 	if [ $LTO = "1" ];then
 		export LD=ld.lld
@@ -423,6 +431,17 @@ build_kernel() {
 	       CROSS_COMPILE=aarch64-linux-android- \
 	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
 	       "${MAKE[@]}" 2>&1 | tee build.log
+        elif [ $COMPILER ="miui" ]
+        then 
+             make ${DEFCONFIG} O=out CC=clang
+             make -j$(nproc --all) O=out \
+                      ARCH=arm64 \
+                      CC=clang \
+                      CROSS_COMPILE=aarch64-linux-gnu- \
+                      NM=llvm-nm \
+                      OBJDUMP=llvm-objdump \
+                      STRIP=llvm-strip \
+                      "${MAKE[@]}" 2>&1 | tee build.log
            fi
 
 		BUILD_END=$(date +"%s")
