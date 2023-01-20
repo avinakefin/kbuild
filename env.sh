@@ -21,9 +21,9 @@ MANUFACTURERINFO="Xioami"
 # Kernel Variant
 NAMA=Yaknah
 
-JENIS=AOSP
+JENIS=MIUI
 
-VARIAN=1.2
+VARIAN=1.0
 
 # Build Type
 BUILD_TYPE="Stable"
