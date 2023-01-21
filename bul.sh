@@ -530,7 +530,7 @@ gen_zip() {
          ⚙️ <b>Compiler</b>
         -<code>$KBUILD_COMPILER_STRING</code>
          
-        #$BUILD_TYPE #$JENIS #$VARIAN"
+        #$BUILD_TYPE #$JENIS #$DEVICE"
         
 	cd ..
 }
