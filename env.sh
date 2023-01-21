@@ -21,7 +21,7 @@ MANUFACTURERINFO="Xioami"
 # Kernel Variant
 NAMA=Samsoe
 
-JENIS=MIUI
+JENIS=MIUI-OOS-AOSP
 
 VARIAN=1.8
 
