@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=staging
+KERNEL_BRANCH=12.0-alioth
 
 # The name of the device for which the kernel is built
 MODEL="Poco F4"
@@ -23,7 +23,7 @@ NAMA=Yaknah
 
 JENIS=AOSP
 
-VARIAN=1.0
+VARIAN=2.0
 
 # Build Type
 BUILD_TYPE="Stable"
