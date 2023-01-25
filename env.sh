@@ -7,10 +7,10 @@ KERNEL_REPO=$KERNEL_SOURCE
 KERNEL_BRANCH=12.0-alioth
 
 # The name of the device for which the kernel is built
-MODEL="Poco F4"
+MODEL="Poco F3"
 
 # The codename of the device
-DEVICE="munch"
+DEVICE="alioth"
 
 # The defconfig which should be used. Get it from config.gz from
 # your device or check source
@@ -23,7 +23,7 @@ NAMA=Yaknah
 
 JENIS=AOSP
 
-VARIAN=2.0
+VARIAN=5.0
 
 # Build Type
 BUILD_TYPE="Stable"
