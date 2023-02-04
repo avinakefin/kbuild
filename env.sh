@@ -23,7 +23,7 @@ NAMA=Samsoe
 
 JENIS=MIUI-OOS-AOSP
 
-VARIAN=2.1
+VARIAN=2.2
 
 # Build Type
 BUILD_TYPE="Stable"
