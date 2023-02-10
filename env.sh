@@ -4,13 +4,13 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=12.1-alioth
+KERNEL_BRANCH=staging
 
 # The name of the device for which the kernel is built
-MODEL="Poco F3"
+MODEL="Poco F4"
 
 # The codename of the device
-DEVICE="alioth"
+DEVICE="munch"
 
 # The defconfig which should be used. Get it from config.gz from
 # your device or check source
@@ -19,9 +19,9 @@ DEVICE="alioth"
 MANUFACTURERINFO="Xioami"
 
 # Kernel Variant
-NAMA=Samsoe
+NAMA=Yaknah
 
-JENIS=MIUI-OOS-ASOP
+JENIS=ASOP
 
 VARIAN=2.3
 
@@ -30,7 +30,7 @@ BUILD_TYPE="Stable"
 
 # Specify compiler.
 # 'clang' or 'clangxgcc' or 'gcc' or 'gcc49' , 'linaro & 'gcc2', clang2
-COMPILER=clang
+COMPILER=aosp
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
