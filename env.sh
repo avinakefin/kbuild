@@ -10,7 +10,7 @@ KERNEL_BRANCH=munch-mi
 MODEL="Poco F4"
 
 # The codename of the device
-DEVICE="alioth"
+DEVICE="munch"
 
 # The defconfig which should be used. Get it from config.gz from
 # your device or check source
@@ -30,7 +30,7 @@ BUILD_TYPE="Stable"
 
 # Specify compiler.
 # 'clang' or 'clangxgcc' or 'gcc' or 'gcc49' , 'linaro & 'gcc2', clang2
-COMPILER=aosp
+COMPILER=clang2
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
