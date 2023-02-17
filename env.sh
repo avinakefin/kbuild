@@ -30,7 +30,7 @@ BUILD_TYPE="Stable"
 
 # Specify compiler.
 # 'clang' or 'clangxgcc' or 'gcc' or 'gcc49' , 'linaro & 'gcc2', clang2
-COMPILER=clang2
+COMPILER=clang
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
@@ -38,7 +38,6 @@ MESSAGE="just flash and forget"
 # KBUILD ENV
 K_USER=$BUILD_USER
 K_HOST=$HOST
-
 
 # arch & subarch
 K_ARCH=arm64
