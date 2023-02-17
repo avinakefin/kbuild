@@ -505,6 +505,7 @@ gen_zip() {
         fi
 
         find $KERNEL_DIR/out/arch/arm64/boot/dts/vendor/qcom -name '*.dtb' -exec cat {} + >$KERNEL_DIR/out/arch/arm64/boot/dtb
+        mv "$KERNEL_DIR"/out/arch/arm64/boot/dtb AnyKernel3/dtb
 
 	cd AnyKernel3 || exit
         cp -af anykernel-real.sh anykernel.sh
