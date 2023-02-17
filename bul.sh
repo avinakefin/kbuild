@@ -408,13 +408,17 @@ build_kernel() {
 				"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clangxgcc" ]
 	then
-	    make -kj$(nproc --all) O=out \
-		ARCH=arm64 \
+	    make -kj$(nproc --all) O=out ARCH=arm64 ${DEFCONFIG} \
+               CC=clang \
 	       LLVM=1 \
 	       LLVM_IAS=1 \
 	       CLANG_TRIPLE=aarch64-linux-gnu- \
 	       CROSS_COMPILE=aarch64-linux-android- \
 	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
+               OBJCOPY=llvm-objcopy \
+               OBJDUMP=llvm-objdump \
+               CLANG_TRIPLE=aarch64-linux-gnu- \
+		STRIP=llvm-strip \
 	       "${MAKE[@]}" 2>&1 | tee build.log
 
 	 elif [ $COMPILER = "aosp" ] 
