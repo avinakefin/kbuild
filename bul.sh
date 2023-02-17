@@ -142,11 +142,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		msg "|| Cloning toolchain ||"
-		git clone --depth=1 https://github.com/Thoreck-project/DragonTC -b 10.0 clang
-		msg "|| Cloning GCC 64  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-gnu-1 -b stable-gcc gcc64
-		msg "|| Cloning GCC 32  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-gnueabi -b stable-gcc gcc32
+                https://github.com/ZyCromerZ/Clang/releases/download/16.0.0-$V-release/Clang-16.0.0-$V.tar.gz clang
 		
 	elif [ $COMPILER = "linaro" ]
 	then
@@ -226,7 +222,7 @@ exports() {
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
-		PATH=$TC_DIR/bin:$GCC64_DIR/bin:$GCC32_DIR/bin:/usr/bin:$PATH
+		PATH=$TC_DIR/bin/:$PATH
 	elif [ $COMPILER = "gcc49" ]
 	then
 		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-android-gcc --version | head -n 1 )
