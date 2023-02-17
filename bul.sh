@@ -142,7 +142,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		msg "|| Cloning toolchain ||"
-                https://github.com/ZyCromerZ/Clang/releases/download/16.0.0-$V-release/Clang-16.0.0-$V.tar.gz clang
+                git clone --depth=1  https://gitlab.com/Project-Nexus/nexus-clang.git clang
 		
 	elif [ $COMPILER = "linaro" ]
 	then
