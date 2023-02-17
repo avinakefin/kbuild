@@ -10,9 +10,9 @@ jobs:
       - uses: actions/checkout@v2
       - name: Setup
         run: |
-        apt update && apt upgrade -y
+       sudo apt update && apt upgrade -y
 msg "Installing essential packages..."
-apt install -y --no-install-recommends git make bc bison openssl \
+sudo apt install -y --no-install-recommends git make bc bison openssl \
     curl zip kmod cpio flex libelf-dev libssl-dev libtfm-dev wget \
     device-tree-compiler ca-certificates python3 python2
 ln -sf "/usr/bin/python${python_version}" /usr/bin/python
