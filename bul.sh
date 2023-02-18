@@ -142,8 +142,8 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		msg "|| Cloning toolchain ||"
-                git clone --depth=1  https://gitlab.com/Project-Nexus/nexus-clang.git clang
-		
+                git clone -q https://gitlab.com/ZyCromerZ/clang.git --depth=1 --single-branch $KERNEL_DIR/clang
+
 	elif [ $COMPILER = "linaro" ]
 	then
 		msg "|| Cloning GCC 64  ||"
