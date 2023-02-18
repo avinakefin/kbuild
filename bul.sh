@@ -360,12 +360,12 @@ build_kernel() {
 		make -j"$PROCS" O=out \
 		CC=clang \
 		CROSS_COMPILE=aarch64-linux-gnu- \
-	    CROSS_COMPILE_COMPAT=arm-linux-gnueabi- \
-	    AR=llvm-ar \
-        NM=llvm-nm \
-        OBJCOPY=llvm-objcopy \
-        OBJDUMP=llvm-objdump \
-        CLANG_TRIPLE=aarch64-linux-gnu- \
+	        CROSS_COMPILE_COMPAT=arm-linux-gnueabi- \
+	        AR=llvm-ar \
+                NM=llvm-nm \
+                OBJCOPY=llvm-objcopy \
+                OBJDUMP=llvm-objdump \
+                CLANG_TRIPLE=aarch64-linux-gnu- \
 		STRIP=llvm-strip \
 		 "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clang2" ]
@@ -408,18 +408,18 @@ build_kernel() {
 				"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clangxgcc" ]
 	then
-	    make -kj$(nproc --all) O=out ARCH=arm64 ${DEFCONFIG} \
-               CC=clang \
-	       LLVM=1 \
-	       LLVM_IAS=1 \
-	       CLANG_TRIPLE=aarch64-linux-gnu- \
-	       CROSS_COMPILE=aarch64-linux-android- \
-	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
-               OBJCOPY=llvm-objcopy \
-               OBJDUMP=llvm-objdump \
-               CLANG_TRIPLE=aarch64-linux-gnu- \
-		STRIP=llvm-strip \
-	       "${MAKE[@]}" 2>&1 | tee build.log
+	    make -j$(nproc --all) O=out ARCH=arm64 ${DEFCONFIG} \
+                      
+                      CC=clang \
+                      CROSS_COMPILE=aarch64-linux-gnu- \
+                      CLANG_TRIPLE=aarch64-linux-gnu- \
+                      CROSS_COMPILE_ARM32=arm-linux-androideabi- \
+                      NM=llvm-nm \
+                      AR=llvm-ar \
+                      OBJDUMP=llvm-objdump \
+                      OBJCOPY=llvm-objcopy \
+                      STRIP=llvm-strip \
+                      "${MAKE[@]}" 2>&1 | tee build.log
 
 	 elif [ $COMPILER = "aosp" ] 
 	 then
@@ -485,10 +485,11 @@ gen_zip() {
         then
             mv "$KERNEL_DIR"/out/arch/arm64/boot/Image AnyKernel3/Image
         fi
+        find $KERNEL_DIR/out/arch/arm64/boot -name '*.dtb' -exec cat {} + >$KERNEL_DIR/out/arch/arm64/boot/dtb
 
-        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona.dtb]
+        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dtb]
         then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona.dtb AnyKernel3/kona.dtb
+            mv "$KERNEL_DIR"/out/arch/arm64/boot/dtb AnyKernel3/dtb
 
         elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona-v2.dtb]
         then
@@ -504,7 +505,7 @@ gen_zip() {
             mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom/kona-v2.dtb AnyKernel3/kona-v2.dtb
         fi
 
-        find $KERNEL_DIR/out/arch/arm64/boot/dts/vendor/qcom -name '*.dtb' -exec cat {} + >$KERNEL_DIR/out/arch/arm64/boot/dtb
+        
         mv "$KERNEL_DIR"/out/arch/arm64/boot/dtb AnyKernel3/dtb
 
 	cd AnyKernel3 || exit
