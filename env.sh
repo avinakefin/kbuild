@@ -4,13 +4,13 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=munch-mi
+KERNEL_BRANCH=12.1-alioth
 
 # The name of the device for which the kernel is built
-MODEL="Poco F4"
+MODEL="Poco F3"
 
 # The codename of the device
-DEVICE="munch"
+DEVICE="alioth"
 
 # The defconfig which should be used. Get it from config.gz from
 # your device or check source
@@ -30,7 +30,7 @@ BUILD_TYPE="Stable"
 
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'gcc' or 'gcc49' , 'linaro & 'gcc2', clang2
-COMPILER=clangxgcc
+COMPILER=clang
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
