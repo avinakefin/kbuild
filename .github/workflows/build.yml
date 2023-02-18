@@ -5,14 +5,14 @@ on:
 
 jobs:
   super-job:
-      runs-on: ubuntu-latest
+      runs-on: ubuntu-20.04
       steps:
       - uses: actions/checkout@v2
       - name: Setup
         run: |
           sudo apt-get update && sudo apt-get upgrade -y
-          sudo apt-get install -y --no-install-recommends git make bc bison openssl curl zip kmod cpio flex libelf-dev libssl-dev libtfm-dev wget device-tree-compiler ca-certificates python3 python2
-
+          sudo apt-get install openssh-server screen python git openjdk-8-jdk android-tools-adb bc bison build-essential curl flex g++-multilib gcc-multilib gnupg gperf imagemagick lib32ncurses-dev lib32readline-dev lib32z1-dev  liblz4-tool libncurses5-dev libsdl1.2-dev libssl-dev libxml2 libxml2-utils lzop pngcrush rsync schedtool squashfs-tools xsltproc yasm zip zlib1g-dev libtinfo5 libncurses5
+     
       - name: Build & Push
         run: |
           git config --global user.name "${GITHUB_USER}"
