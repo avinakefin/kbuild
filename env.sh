@@ -30,7 +30,7 @@ BUILD_TYPE="Stable"
 
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'gcc' or 'gcc49' , 'linaro & 'gcc2', clang2
-COMPILER=clang
+COMPILER=clang2
 
 # Message on anykernel when installation
 MESSAGE="just flash"
