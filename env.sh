@@ -33,7 +33,7 @@ BUILD_TYPE="Stable"
 COMPILER=clang
 
 # Message on anykernel when installation
-MESSAGE="just flash and forget"
+MESSAGE="just flash"
 
 # KBUILD ENV
 K_USER=$BUILD_USER
