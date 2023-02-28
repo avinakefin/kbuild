@@ -4,13 +4,13 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=munch-mi
+KERNEL_BRANCH=staging
 
 # The name of the device for which the kernel is built
-MODEL="Poco F4"
+MODEL="Poco F3"
 
 # The codename of the device
-DEVICE="munch"
+DEVICE="alioth"
 
 # The defconfig which should be used. Get it from config.gz from
 # your device or check source
@@ -21,9 +21,9 @@ MANUFACTURERINFO="Xioami"
 # Kernel Variant
 NAMA=Yaknah
 
-JENIS=MIUI
+JENIS=AOSP
 
-VARIAN=Limited
+VARIAN=6.0
 
 # Build Type
 BUILD_TYPE="Stable"
