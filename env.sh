@@ -23,7 +23,7 @@ NAMA=Samsoe
 
 JENIS=AOSP
 
-VARIAN=2.5
+VARIAN=2.5-279
 
 # Build Type
 BUILD_TYPE="Stable"
