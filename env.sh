@@ -19,18 +19,18 @@ DEVICE=$DEVICE_CODENAME
 MANUFACTURERINFO="Xioami"
 
 # Kernel Variant
-NAMA=Samsoe
+NAMA=Yaknah
 
 JENIS=AOSP
 
-VARIAN=2.5-279
+VARIAN=7.0
 
 # Build Type
 BUILD_TYPE="Stable"
 
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'gcc' or 'gcc49' , 'linaro & 'gcc2', clang2
-COMPILER=clang
+COMPILER=clang2
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
