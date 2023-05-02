@@ -4,10 +4,10 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=munch-mi
+KERNEL_BRANCH=alioth
 
 # The name of the device for which the kernel is built
-MODEL="Poco F4"
+MODEL="Poco F3"
 
 # The codename of the device
 DEVICE=$DEVICE_CODENAME
@@ -19,11 +19,11 @@ DEVICE=$DEVICE_CODENAME
 MANUFACTURERINFO="Xioami"
 
 # Kernel Variant
-NAMA=Yaknah
+NAMA=Samsoe
 
-JENIS=MIUI
+JENIS=MIUI-OOS-AOSP
 
-VARIAN=6.0
+VARIAN=2.6
 
 # Build Type
 BUILD_TYPE="Stable"
