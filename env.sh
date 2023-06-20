@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=rebase
+KERNEL_BRANCH=base
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
