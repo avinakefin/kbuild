@@ -162,9 +162,12 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
          msg "|| Android Clang  ||"
                mkdir clang
 	       cd clang || exit
-	       wget -q https://github.com/ZyCromerZ/Clang/releases/download/17.0.0-20230608-release/Clang-17.0.0-20230608.tar.gz
+	       wget -q https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master/clang-r450784e.tar.gz
 	       tar -xf clang*
 	       cd .. || exit
+	cd /home/runner/work/kbuild/kbuild/kernel
+	       git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git --depth=1 gcc64
+	       git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9.git --depth=1 gcc32
 	       
 	elif [$COMPILER ="miui" ]
         then
