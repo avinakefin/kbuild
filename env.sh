@@ -21,7 +21,8 @@ MANUFACTURERINFO="Xioami"
 # Kernel Variant
 NAMA=Yaknah
 
-JENIS=MIUI
+# untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
+JENIS=miui
 
 VARIAN=Final
 
