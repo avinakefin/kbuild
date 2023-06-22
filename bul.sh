@@ -345,7 +345,7 @@ build_kernel() {
 		MAKE+=( -s )
 	fi
 
- if [ $JENIS = miui ]
+ if [ $JENIS = "miui" ]
  then
  msg "|| Miui Os Terdeteksi ||"
  
@@ -418,9 +418,6 @@ run() {
 	sh -c "${1}"
 
 }
-elif
-   then
-    msg "|| AOSP Build terdeteksi || "
 
  fi
 
