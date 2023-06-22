@@ -71,7 +71,7 @@ DEF_REG=0
 FILES=Image
 DTBO=$(pwd)/out/arch/arm64/boot/dtbo.img
 DTB=$KERNEL_DIR/out/arch/arm64/boot/dtb
-dts_source=arch/arm64/boot/dts/vendor/qcom
+dts_source=$KERNEL_DIR/arch/arm64/boot/dts/vendor/qcom
 
 # Build dtbo.img (select this only if your source has support to building dtbo.img)
 # 1 is YES | 0 is NO(default)
@@ -418,7 +418,9 @@ run() {
 	sh -c "${1}"
 
 }
-
+elif [ $JENIS = "aosp" ]
+     then
+     msg " || Non Miui Terdeteksi "
  fi
 
 curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
