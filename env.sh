@@ -22,7 +22,7 @@ MANUFACTURERINFO="Xioami"
 NAMA=Yaknah
 
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
-JENIS=miui
+JENIS=aosp
 
 VARIAN=Final
 
