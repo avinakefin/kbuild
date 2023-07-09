@@ -497,22 +497,8 @@ elif [ $JENIS = "aosp" ]
 				"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clangxgcc" ]
 	then
-	    make -j"$PROCS" O=out \
-		ARCH=arm64 \
-               SUBARCH=arm64 \
-	       CC=clang \
-	       LLVM=1 \
-	       LLVM_IAS=1 \
-	       CROSS_COMPILE=aarch64-linux-android- \
-               HOSTCC=clang \
-               HOSTCXX=clang++ \
-	       LD="ld.lld" \
-	       AR=llvm-ar \
-               NM=llvm-nm \
-	       OBJCOPY=llvm-objcopy \
-               OBJDUMP=llvm-objdump \
-               READELF=$llvm-readelf \
-               STRIP=llvm-strip \
+	    make -j$(nproc --all) O=out ${DEFCONFIG} \
+		
 	       "${MAKE[@]}" 2>&1 | tee build.log
 
 	 elif [ $COMPILER = "aosp" ] 
