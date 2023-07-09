@@ -143,8 +143,12 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		msg "|| Cloning toolchain ||"
-                git clone --depth=1 https://github.com/fajar4561/SignatureTC_Clang -b 15 clang
-		
+                git clone --depth=1 https://github.com/fajar4561/SignatureTC_Clang -b 15 $KERNEL_DIR/clang
+		msg "|| Cloning GCC 64  ||"
+		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-android-4.9 $KERNEL_DIR/gcc64
+		msg "|| Cloning GCC 32  ||"
+		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-androideabi-4.9 $KERNEL_DIR/gcc32
+  
 	elif [ $COMPILER = "linaro" ]
 	then
 		msg "|| Cloning GCC 64  ||"
@@ -448,6 +452,7 @@ elif [ $JENIS = "aosp" ]
         OBJDUMP=llvm-objdump \
         CLANG_TRIPLE=aarch64-linux-gnu- \
 		STRIP=llvm-strip \
+  LLVM_IAS=1 \
 		 "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clang2" ]
 	then
