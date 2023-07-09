@@ -145,7 +145,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 		msg "|| Cloning toolchain ||"
                 git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r416183b $KERNEL_DIR/clang
 		msg "|| Cloning gas ||"
-               git clone https://android.googlesource.com/platform/prebuilts/gas/linux-x86 $KERNEL_DIR/gcc64
+                git clone https://android.googlesource.com/platform/prebuilts/gas/linux-x86 $KERNEL_DIR/gcc64
                 msg "|| Cloning build tools ||"
 		git clone https://android.googlesource.com/platform/prebuilts/build-tools $KERNEL_DIR/gcc32
 		
@@ -498,8 +498,10 @@ curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh
 				"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clangxgcc" ]
 	then
-	    make -j$(nproc) -C $(KERNEL_DIR) O=out \
-		
+	    make -j$(nproc --all)  O=out \
+	       CC=clang \
+               LLVM=1 \
+	       LLVM_IAS=1 \
 	       "${MAKE[@]}" 2>&1 | tee build.log
 
 	 elif [ $COMPILER = "aosp" ] 
