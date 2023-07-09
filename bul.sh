@@ -497,10 +497,9 @@ elif [ $JENIS = "aosp" ]
 	    make -j"$PROCS" O=out \
 		ARCH=arm64 \
   SUBARCH=arm64 \
-	       
-	      
-	       
-	       CROSS_COMPILE=aarch64-linux-gnu- \
+	       CC=ccache clang \
+	       LLVM=1 \
+	       LLVM_IAS=1 \
 	       "${MAKE[@]}" 2>&1 | tee build.log
 
 	 elif [ $COMPILER = "aosp" ] 
