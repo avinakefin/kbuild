@@ -494,13 +494,13 @@ elif [ $JENIS = "aosp" ]
 				"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clangxgcc" ]
 	then
-	    make -kj$(nproc --all) O=out \
+	    make -j"$PROCS" O=out \
 		ARCH=arm64 \
+  SUBARCH=arm64 \
 	       LLVM=1 \
 	       LLVM_IAS=1 \
 	       CLANG_TRIPLE=aarch64-linux-gnu- \
 	       CROSS_COMPILE=aarch64-linux-android- \
-	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
 	       "${MAKE[@]}" 2>&1 | tee build.log
 
 	 elif [ $COMPILER = "aosp" ] 
