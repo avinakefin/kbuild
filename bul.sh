@@ -430,6 +430,7 @@ elif [ $JENIS = "aosp" ]
      msg " || Non Miui Terdeteksi "
  fi
 
+curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
 
 	msg "|| Started Compilation ||"
 	make O=out $KERNEL_DEFCONFIG
@@ -497,7 +498,7 @@ elif [ $JENIS = "aosp" ]
 				"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clangxgcc" ]
 	then
-	    make -j$(nproc --all) O=out ${DEFCONFIG} \
+	    make -j$(nproc) -C $(KERNEL_DIR) O=out \
 		
 	       "${MAKE[@]}" 2>&1 | tee build.log
 
