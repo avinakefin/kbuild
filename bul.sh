@@ -143,7 +143,11 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		msg "|| Cloning toolchain ||"
-                git clone --depth=1 https://github.com/fajar4561/SignatureTC_Clang -b 15 $KERNEL_DIR/clang
+                git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r416183b $KERNEL_DIR/clang
+		msg "|| Cloning gas ||"
+               git clone https://android.googlesource.com/platform/prebuilts/gas/linux-x86 $KERNEL_DIR/gcc64
+                msg "|| Cloning build tools ||"
+		git clone https://android.googlesource.com/platform/prebuilts/build-tools $KERNEL_DIR/gcc32
 		
 	elif [ $COMPILER = "linaro" ]
 	then
@@ -225,6 +229,9 @@ exports() {
 	then
 		KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
 		PATH=$TC_DIR/bin/:$PATH
+                export TARGET_SOC=s5e9925
+                export LLVM=1 LLVM_IAS=1
+		export PATH=$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
 	elif [ $COMPILER = "gcc49" ]
 	then
 		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-android-gcc --version | head -n 1 )
