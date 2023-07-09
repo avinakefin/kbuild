@@ -144,11 +144,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	then
 		msg "|| Cloning toolchain ||"
                 git clone --depth=1 https://github.com/fajar4561/SignatureTC_Clang -b 15 $KERNEL_DIR/clang
-		msg "|| Cloning GCC 64  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-android-4.9 $KERNEL_DIR/gcc64
-		msg "|| Cloning GCC 32  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-androideabi-4.9 $KERNEL_DIR/gcc32
-  
+		
 	elif [ $COMPILER = "linaro" ]
 	then
 		msg "|| Cloning GCC 64  ||"
@@ -497,9 +493,17 @@ elif [ $JENIS = "aosp" ]
 	    make -j"$PROCS" O=out \
 		ARCH=arm64 \
   SUBARCH=arm64 \
-	       CC=ccache clang \
+	       CC=clang \
 	       LLVM=1 \
 	       LLVM_IAS=1 \
+	       CROSS_COMPILE=aarch64-linux-android- \
+               HOSTCC=gcc \
+               HOSTCXX=g++ \
+	       LD="ld.lld" \
+	       OBJCOPY=llvm-objcopy \
+OBJDUMP		= llvm-objdump \
+READELF		= $(CCACHE) llvm-readelf \
+STRIP		= $(CCACHE) llvm-strip \
 	       "${MAKE[@]}" 2>&1 | tee build.log
 
 	 elif [ $COMPILER = "aosp" ] 
@@ -508,6 +512,9 @@ elif [ $JENIS = "aosp" ]
 	       CC=clang \
 	       LLVM=1 \
 	       LLVM_IAS=1 \
+	NM=llvm-nm \
+                      OBJDUMP=llvm-objdump \
+                      STRIP=llvm-strip \
 	       CLANG_TRIPLE=aarch64-linux-gnu- \
 	       CROSS_COMPILE=aarch64-linux-android- \
 	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
