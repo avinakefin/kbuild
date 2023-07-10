@@ -24,6 +24,9 @@ NAMA=Yaknah-F3
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=aosp
 
+# 1 if clone anykernel 0 for have anykernel
+ANYKERNEL=0
+
 VARIAN=1.0
 
 # Build Type
