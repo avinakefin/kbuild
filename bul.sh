@@ -500,6 +500,10 @@ curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh
 	       CC=clang \
                LLVM=1 \
 	       LLVM_IAS=1 \
+	NM=llvm-nm \
+                      OBJDUMP=llvm-objdump \
+                      STRIP=llvm-strip \
+	CROSS_COMPILE=aarch64-linux-gnu- \
 	       "${MAKE[@]}" 2>&1 | tee build.log
 
 	 elif [ $COMPILER = "aosp" ] 
