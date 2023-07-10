@@ -19,7 +19,7 @@ DEVICE=$DEVICE_CODENAME
 MANUFACTURERINFO="Xioami"
 
 # Kernel Variant
-NAMA=Yaknah-F3
+NAMA=YaknahF3
 
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=aosp
