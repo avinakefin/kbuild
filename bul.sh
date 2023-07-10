@@ -349,6 +349,8 @@ build_kernel() {
 		MAKE+=( -s )
 	fi
 
+curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+
  if [ $JENIS = "miui" ]
  then
  msg "|| Miui Os Terdeteksi ||"
