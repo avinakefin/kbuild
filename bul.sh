@@ -66,6 +66,7 @@ PTTG=1
 
 # Generate a full DEFCONFIG prior building. 1 is YES | 0 is NO(default)
 DEF_REG=0
+# Clone AnyKernel if 1 and 0 if no
 
 # Files/artifacts
 FILES=Image
@@ -76,7 +77,7 @@ dts_source=$KERNEL_DIR/arch/arm64/boot/dts/vendor/qcom
 # Build dtbo.img (select this only if your source has support to building dtbo.img)
 # 1 is YES | 0 is NO(default)
 BUILD_DTBO=0
-ANYKERNEL=0
+
 # Sign the zipfile
 # 1 is YES | 0 is NO
 SIGN=0
@@ -143,11 +144,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		msg "|| Cloning toolchain ||"
-                git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r416183b $KERNEL_DIR/clang
-		msg "|| Cloning gas ||"
-                git clone https://android.googlesource.com/platform/prebuilts/gas/linux-x86 $KERNEL_DIR/gcc64
-                msg "|| Cloning build tools ||"
-		git clone https://android.googlesource.com/platform/prebuilts/build-tools $KERNEL_DIR/gcc32
+                git clone https://github.com/ZyCromerZ/Clang/releases/download/17.0.0-20230709-release/Clang-17.0.0-20230709.tar.gz $KERNEL_DIR/clang
 		
 	elif [ $COMPILER = "linaro" ]
 	then
@@ -186,14 +183,14 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	# GCC Directory
 		GCC64_DIR=$KERNEL_DIR/gcc64
 		GCC32_DIR=$KERNEL_DIR/gcc32
-  
-	if [ $ANYKERNEL = 1 ]
-	    then
-	    msg "|| Cloning Anykernel ||"
-               git clone https://github.com/avinakefin/AnyKernel AnyKernel3
-        fi
+	  
+        if [ $ANYKERNEL = 1 ]
+	then
+		msg "|| Cloning Anykernel ||"
+                git clone https://github.com/avinakefin/AnyKernel AnyKernel3
+	fi
 	
-	if [ $BUILD_DTBO = 1 ]
+        if [ $BUILD_DTBO = 1 ]
 	then
 		msg "|| Cloning libufdt ||"
 		git clone https://android.googlesource.com/platform/system/libufdt "$KERNEL_DIR"/scripts/ufdt/libufdt
@@ -231,8 +228,7 @@ exports() {
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 		KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
-		PATH=$TC_DIR/bin/:$PATH          
-		
+		PATH=$TC_DIR/bin/:$PATH
 	elif [ $COMPILER = "gcc49" ]
 	then
 		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-android-gcc --version | head -n 1 )
@@ -431,7 +427,6 @@ elif [ $JENIS = "aosp" ]
      msg " || Non Miui Terdeteksi "
  fi
 
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
 
 	msg "|| Started Compilation ||"
 	make O=out $KERNEL_DEFCONFIG
@@ -457,7 +452,6 @@ curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh
         OBJDUMP=llvm-objdump \
         CLANG_TRIPLE=aarch64-linux-gnu- \
 		STRIP=llvm-strip \
-  LLVM_IAS=1 \
 		 "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clang2" ]
 	then
@@ -499,15 +493,13 @@ curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh
 				"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clangxgcc" ]
 	then
-	    make -j$(nproc --all)  O=out \
-     ARCH=arm64 $KERNEL_DEFCONFIG \
-	       CC=clang \
-               LLVM=1 \
+	    make -kj$(nproc --all) O=out \
+		ARCH=arm64 \
+	       LLVM=1 \
 	       LLVM_IAS=1 \
-	NM=llvm-nm \
-                      OBJDUMP=llvm-objdump \
-                      STRIP=llvm-strip \
-	
+	       CLANG_TRIPLE=aarch64-linux-gnu- \
+	       CROSS_COMPILE=aarch64-linux-android- \
+	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
 	       "${MAKE[@]}" 2>&1 | tee build.log
 
 	 elif [ $COMPILER = "aosp" ] 
@@ -516,9 +508,6 @@ curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh
 	       CC=clang \
 	       LLVM=1 \
 	       LLVM_IAS=1 \
-	NM=llvm-nm \
-                      OBJDUMP=llvm-objdump \
-                      STRIP=llvm-strip \
 	       CLANG_TRIPLE=aarch64-linux-gnu- \
 	       CROSS_COMPILE=aarch64-linux-android- \
 	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
