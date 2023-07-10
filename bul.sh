@@ -349,8 +349,6 @@ build_kernel() {
 		MAKE+=( -s )
 	fi
 
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
-
  if [ $JENIS = "miui" ]
  then
  msg "|| Miui Os Terdeteksi ||"
@@ -428,16 +426,6 @@ elif [ $JENIS = "aosp" ]
      then
      msg " || Non Miui Terdeteksi || "
  fi
-
-if [ $KERNELSU = "1" ] 
-then
-    msg " || Memasang Kernel SU || "
-    curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
-fi
-if [ $KERNELSU = "0" ] 
-then
-   msg " || KerneSU tidak dipasang || "
-fi
 
 	msg "|| Started Compilation ||"
 	make O=out $KERNEL_DEFCONFIG
