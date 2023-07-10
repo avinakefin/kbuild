@@ -1,4 +1,4 @@
-#! /bin/bash
+p#! /bin/bash
 # shellcheck disable=SC2154
  # Script For Building Android arm64 Kernel
  #
@@ -76,7 +76,7 @@ dts_source=$KERNEL_DIR/arch/arm64/boot/dts/vendor/qcom
 # Build dtbo.img (select this only if your source has support to building dtbo.img)
 # 1 is YES | 0 is NO(default)
 BUILD_DTBO=0
-
+ANYKERNEL=0
 # Sign the zipfile
 # 1 is YES | 0 is NO
 SIGN=0
@@ -186,10 +186,13 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	# GCC Directory
 		GCC64_DIR=$KERNEL_DIR/gcc64
 		GCC32_DIR=$KERNEL_DIR/gcc32
-
+  
+	if [ $ANYKERNEL = 1 ]
+	    then
 	    msg "|| Cloning Anykernel ||"
-                git clone https://github.com/avinakefin/AnyKernel AnyKernel3
-        
+               git clone https://github.com/avinakefin/AnyKernel AnyKernel3
+        fi
+	
 	if [ $BUILD_DTBO = 1 ]
 	then
 		msg "|| Cloning libufdt ||"
