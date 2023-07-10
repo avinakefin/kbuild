@@ -47,3 +47,6 @@ K_HOST=$HOST
 # arch & subarch
 K_ARCH=arm64
 K_SUBARCH=arm64
+
+# Opsi for kernel SU 1 For yes 0 for no
+KERNELSU=1
