@@ -443,16 +443,19 @@ curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh
 
 	if [ $COMPILER = "clang" ]
 	then
-		make -j"$PROCS" O=out \
-		CC=clang \
-		CROSS_COMPILE=aarch64-linux-gnu- \
-	    CROSS_COMPILE_COMPAT=arm-linux-gnueabi- \
-	    AR=llvm-ar \
-        NM=llvm-nm \
-        OBJCOPY=llvm-objcopy \
-        OBJDUMP=llvm-objdump \
-        CLANG_TRIPLE=aarch64-linux-gnu- \
-		STRIP=llvm-strip \
+make -j$(nproc) O=out ARCH=arm64 ${KERNEL_DEFCONFIG}
+make -j$(nproc) ARCH=arm64 O=out \
+      ARCH=arm64 \
+      CC="clang" \
+      AR=llvm-ar \
+      NM=llvm-nm \
+      LD=ld.lld \
+      AS=llvm-as \
+      STRIP=llvm-strip \
+      OBJCOPY=llvm-objcopy \
+      OBJDUMP=llvm-objdump \
+      CROSS_COMPILE=aarch64-linux-gnu- \
+      CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
 		 "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clang2" ]
 	then
