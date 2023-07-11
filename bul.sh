@@ -272,7 +272,11 @@ exports() {
 		KBUILD_COMPILER_STRING BOT_MSG_URL \
 		BOT_BUILD_URL PROCS TOKEN
 }
-
+if [ $KERNELSU = "1" ]
+then
+msg " || KernelSu Cloning || "
+curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" 
+fi
 ##---------------------------------------------------------##
 
 tg_post_msg() {
@@ -426,9 +430,6 @@ elif [ $JENIS = "aosp" ]
      then
      msg " || Non Miui Terdeteksi || "
  fi
-
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" 
-
 	msg "|| Started Compilation ||"
 	make O=out $KERNEL_DEFCONFIG
 	if [ $DEF_REG = 1 ]
