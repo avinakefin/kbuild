@@ -427,7 +427,7 @@ elif [ $JENIS = "aosp" ]
      msg " || Non Miui Terdeteksi || "
  fi
 
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash-
+curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
 
 	msg "|| Started Compilation ||"
 	make O=out $KERNEL_DEFCONFIG
