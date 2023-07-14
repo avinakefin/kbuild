@@ -153,12 +153,13 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 		msg "|| Cloning GCC 32  ||"
 		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-gnueabi -b stable-gcc gcc32
 		
-	elif [ $COMPILER = "gcc2" ]
+	elif [ $COMPILER = "zyn" ]
 	then
-		msg "|| Cloning GCC 64  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-gnu -b gcc8-201903-A gcc64
-		msg "|| Cloning GCC 32  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-gnueabi -b stable-gcc gcc32
+		msg "|| Cloning Zyn Clang||"
+                mkdir clang
+		cd clang || exit
+		wget -q https://github.com/ZyCromerZ/Clang/releases/download/17.0.0-20230714-release/Clang-17.0.0-20230714.tar.gz
+                tar -xf clang*
 	elif [ $COMPILER = "aosp" ]
 	then
          msg "|| Android Clang  ||"
@@ -233,10 +234,10 @@ exports() {
 	then
 		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-android-gcc --version | head -n 1 )
 		PATH=$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
-	elif [ $COMPILER = "gcc" ]
+	elif [ $COMPILER = "zyn" ]
 	then
-		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-elf-gcc --version | head -n 1)
-		PATH=$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
+		KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
+		PATH=$TC_DIR/bin/:$PATH
 	elif [ $COMPILER = "gcc2" ]
 	then
 		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-gnu-gcc --version | head -n 1 )
@@ -447,10 +448,9 @@ elif [ $JENIS = "aosp" ]
 make -j$(nproc) O=out ARCH=arm64 $KERNEL_DEFCONFIG
 make -j$(nproc) ARCH=arm64 O=out \
       ARCH=arm64 \
-      CC="clang" \
+      CC=clang \
       AR=llvm-ar \
       NM=llvm-nm \
-      
       AS=llvm-as \
       STRIP=llvm-strip \
       OBJCOPY=llvm-objcopy \
@@ -487,27 +487,32 @@ make -j$(nproc) ARCH=arm64 O=out \
 				CROSS_COMPILE=aarch64-linux-gnu- \
 				CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
 				"${MAKE[@]}" 2>&1 | tee build.log
-	elif [ $COMPILER = "gcc" ]
+	elif [ $COMPILER = "zym" ]
 	then
-		make -j"$PROCS" O=out \
-				CROSS_COMPILE_ARM32=arm-eabi- \
-				CROSS_COMPILE=aarch64-elf- \
-				AR=aarch64-elf-ar \
-				OBJDUMP=aarch64-elf-objdump \
-				STRIP=aarch64-elf-strip  \
-				LD="ld.lld" \
-				"${MAKE[@]}" 2>&1 | tee build.log
+	       make -kj$(nproc --all) O=out ARCH=arm64 ${DEFCONFIG} \
+	       CC=clang \
+	       LLVM=1 \
+	       LLVM_IAS=1 \
+	       OBJDUMP=llvm-objdump \
+               STRIP=llvm-strip \
+	       OBJCOPY=llvm-objcopy \
+	       CROSS_COMPILE=aarch64-linux-gnu- \
+	       CROSS_COMPILE_COMPAT=arm-linux-gnueabi- \
+	       "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clangxgcc" ]
 	then
 	    make -kj$(nproc --all) O=out \
+                CC=clang \
 		ARCH=arm64 \
 	       LLVM=1 \
 	       LLVM_IAS=1 \
+	       NM=llvm-nm \
+               OBJDUMP=llvm-objdump \
+               STRIP=llvm-strip \
 	       CLANG_TRIPLE=aarch64-linux-gnu- \
 	       CROSS_COMPILE=aarch64-linux-android- \
 	       CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
 	       "${MAKE[@]}" 2>&1 | tee build.log
-
 	 elif [ $COMPILER = "aosp" ] 
 	 then
 	       make -kj$(nproc --all) O=out ARCH=arm64 ${DEFCONFIG} \
