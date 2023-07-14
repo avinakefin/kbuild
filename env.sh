@@ -35,7 +35,7 @@ BUILD_TYPE="Stable"
 #
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'zyn (clang)' or 'gcc49' , 'linaro & 'gcc2', clang2
-COMPILER=clang
+COMPILER=zyn
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
@@ -49,4 +49,4 @@ K_ARCH=arm64
 K_SUBARCH=arm64
 
 # Opsi for kernel SU 1 For yes 0 for no
-KERNELSU=0
+KERNELSU=1
