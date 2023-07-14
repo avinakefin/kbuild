@@ -1,2 +1,2 @@
 Sudah lelah saya gan tapi ya sudah lah gan bener lelah sangat lelah
-penggunaan KernelSU harus di dukung romnya
+penggunaan KernelSU harus di dukung anu
