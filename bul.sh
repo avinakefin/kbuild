@@ -273,11 +273,19 @@ exports() {
 		KBUILD_COMPILER_STRING BOT_MSG_URL \
 		BOT_BUILD_URL PROCS TOKEN
 }
-if [ $KERNELSU = "1" ]
+
+if [ $CLONESU = "1" ]
 then
 msg " || KernelSu Cloning || "
+git clone --depth=1 https://github.com/tiann/KernelSU
+fi
+
+if [ $KERNELSU = "1" ]
+then
+msg " || KernelSu Patching || "
 curl -LSs "https://raw.githubusercontent.com/avinakefin/kbuild/main/su.sh" | bash -
 fi
+
 ##---------------------------------------------------------##
 
 tg_post_msg() {
