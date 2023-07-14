@@ -278,6 +278,9 @@ if [ $CLONESU = "1" ]
 then
 msg " || KernelSu Cloning || "
 git clone --depth=1 https://github.com/tiann/KernelSU
+msg " || Copy To Drivers || "
+     cp -R KernelSU/kernel drivers
+
 fi
 
 if [ $KERNELSU = "1" ]
