@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eux
 
-GKI_ROOT=$PWD
+GKI_ROOT=$(pwd)
 
 echo "[+] GKI_ROOT: $GKI_ROOT"
 
@@ -28,6 +28,8 @@ elif test -d "$GKI_ROOT/drivers"; then
      ln -sf "../KernelSU/kernel" "kernelsu"
 fi
 cd "$GKI_ROOT"
+echo "copy file to driver"
+     cp $GKI_ROOT/KernelSU/kernel $GKI_ROOT/drivers
 
 echo '[+] Add kernel su driver to Makefile'
 
