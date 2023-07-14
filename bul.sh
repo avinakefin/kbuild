@@ -455,7 +455,7 @@ make -j$(nproc) ARCH=arm64 O=out \
       STRIP=llvm-strip \
       OBJCOPY=llvm-objcopy \
       OBJDUMP=llvm-objdump \
-      CROSS_COMPILE=aarch64-linux-gnu- \
+      CROSS_COMPILE_COMPAT=aarch64-linux-gnu- \
       CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
 		 "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clang2" ]
