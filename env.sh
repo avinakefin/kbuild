@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=alioth
+KERNEL_BRANCH=main
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
@@ -19,7 +19,7 @@ DEVICE=$DEVICE_CODENAME
 MANUFACTURERINFO="Xioami"
 
 # Kernel Variant
-NAMA=YaknahF3
+NAMA=Samsoe
 
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=aosp
@@ -27,7 +27,7 @@ JENIS=aosp
 # 1 if clone anykernel 0 for have anykernel
 ANYKERNEL=0
 
-VARIAN=1.0
+VARIAN=3.0
 
 # Build Type
 BUILD_TYPE="Stable"
