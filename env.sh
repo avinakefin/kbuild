@@ -35,7 +35,7 @@ BUILD_TYPE="Stable"
 #
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'zyn (clang)' or 'gcc49' , 'linaro & 'gcc2', clang2
-COMPILER=miui
+COMPILER=aosp
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
