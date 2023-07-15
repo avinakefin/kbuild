@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=Base
+KERNEL_BRANCH=KERNEL.PLATFORM.1.0.r1-15300-kernel.0
 
 # The name of the device for which the kernel is built
 MODEL="Poco F5"
@@ -25,9 +25,9 @@ NAMA=Yaknah_F5
 JENIS=aosp
 
 # 1 if clone anykernel 0 for have anykernel
-ANYKERNEL=1
+ANYKERNEL=0
 
-VARIAN=1.0
+VARIAN=1.0-anu
 
 # Build Type
 BUILD_TYPE="Stable"
@@ -35,7 +35,7 @@ BUILD_TYPE="Stable"
 #
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'zyn (clang)' or 'gcc49' , 'linaro & 'gcc2', clang2
-COMPILER=aosp
+COMPILER=clang
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
@@ -51,5 +51,5 @@ K_SUBARCH=arm64
 # Opsi for kernel SU 1 For yes 0 for no
 KERNELSU=0
 # Clone kernelSU 1 yes or 0 no
-CLONESU=1
+CLONESU=0
 # kernel_f3 source
