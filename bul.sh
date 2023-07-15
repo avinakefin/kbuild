@@ -279,7 +279,7 @@ then
 msg " || KernelSu Cloning || "
 git clone --depth=1 https://github.com/tiann/KernelSU
 msg " || Copy To Drivers || "
-     cp -R KernelSU/kernel drivers
+     cp -R /KernelSU/kernel /drivers
 
 fi
 
@@ -464,7 +464,6 @@ elif [ $JENIS = "aosp" ]
         NM=llvm-nm \
         OBJCOPY=llvm-objcopy \
         OBJDUMP=llvm-objdump \
-        CLANG_TRIPLE=aarch64-linux-gnu- \
 	STRIP=llvm-strip \
         LLVM=1 \
 	LLVM_IAS=1 \
