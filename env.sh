@@ -27,7 +27,7 @@ JENIS=aosp
 # 1 if clone anykernel 0 for have anykernel
 ANYKERNEL=0
 
-VARIAN=3.0-Reloaded
+VARIAN=3.0-Reloaded_5.4.61
 
 # Build Type
 BUILD_TYPE="Stable"
@@ -52,3 +52,4 @@ K_SUBARCH=arm64
 KERNELSU=0
 # Clone kernelSU 1 yes or 0 no
 CLONESU=0
+# kernel_f3 source
