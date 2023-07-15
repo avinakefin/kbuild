@@ -25,7 +25,7 @@ NAMA=Yaknah_F5
 JENIS=aosp
 
 # 1 if clone anykernel 0 for have anykernel
-ANYKERNEL=0
+ANYKERNEL=1
 
 VARIAN=1.0
 
@@ -51,5 +51,5 @@ K_SUBARCH=arm64
 # Opsi for kernel SU 1 For yes 0 for no
 KERNELSU=0
 # Clone kernelSU 1 yes or 0 no
-CLONESU=0
+CLONESU=1
 # kernel_f3 source
