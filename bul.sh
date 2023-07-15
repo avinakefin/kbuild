@@ -464,8 +464,6 @@ elif [ $JENIS = "aosp" ]
         OBJDUMP=llvm-objdump \
 	STRIP=llvm-strip \
         LD=ld.lld \
-        LLVM=1 \
-	LLVM_IAS=1 \
         CROSS_COMPILE=aarch64-linux-gnu- \
 		 "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clang2" ]
