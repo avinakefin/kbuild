@@ -175,8 +175,8 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 	elif [$COMPILER ="miui" ]
         then
               msg "|| Clone miui || "
-              git clone https://gitlab.com/ZyCromerZ/clang.git --depth=1 --single-branch clang
-        fi
+              git clone --depth=1 https://github.com/fajar4561/SignatureTC_Clang -b 15 clang
+	fi
 
 	# Toolchain Directory defaults to clang-llvm
 		TC_DIR=$KERNEL_DIR/clang
@@ -538,6 +538,8 @@ elif [ $JENIS = "aosp" ]
                       NM=llvm-nm \
                       OBJDUMP=llvm-objdump \
                       STRIP=llvm-strip \
+		      LLVM=1 \
+	              LLVM_IAS=1 \
                       "${MAKE[@]}" 2>&1 | tee build.log
            fi
 
