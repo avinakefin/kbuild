@@ -532,14 +532,8 @@ elif [ $JENIS = "aosp" ]
         elif [ $COMPILER = "miui" ]
         then 
              make -j$(nproc --all) O=out ARCH=arm64 ${DEFCONFIG} \
-                      ARCH=arm64 \
                       CC=clang \
                       CROSS_COMPILE=aarch64-linux-gnu- \
-                      NM=llvm-nm \
-                      OBJDUMP=llvm-objdump \
-                      STRIP=llvm-strip \
-		      LLVM=1 \
-	              LLVM_IAS=1 \
                       "${MAKE[@]}" 2>&1 | tee build.log
            fi
 
