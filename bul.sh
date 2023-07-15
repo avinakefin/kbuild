@@ -457,15 +457,17 @@ elif [ $JENIS = "aosp" ]
 	if [ $COMPILER = "clang" ]
 	then
          make -j"$PROCS" O=out \
-		CC=clang \
-		CROSS_COMPILE=aarch64-linux-gnu- \
-	    CROSS_COMPILE_COMPAT=arm-linux-gnueabi- \
-	    AR=llvm-ar \
+	CC=clang \
+	CROSS_COMPILE=aarch64-linux-gnu- \
+	CROSS_COMPILE_COMPAT=arm-linux-gnueabi- \
+	AR=llvm-ar \
         NM=llvm-nm \
         OBJCOPY=llvm-objcopy \
         OBJDUMP=llvm-objdump \
         CLANG_TRIPLE=aarch64-linux-gnu- \
-		STRIP=llvm-strip \
+	STRIP=llvm-strip \
+        LLVM=1 \
+	LLVM_IAS=1 \
 		 "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clang2" ]
 	then
