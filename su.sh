@@ -30,8 +30,8 @@ elif test -d "$GKI_ROOT/drivers"; then
      ln -sf "../KernelSU/kernel" "kernelsu"
 fi
 cd "$GKI_ROOT"
-echo "copy file to driver"
-     cp -rf $GKI_ROOT/KernelSU/kernel $GKI_ROOT/drivers
+#echo "copy file to driver"
+     #cp -rf $GKI_ROOT/KernelSU/kernel $GKI_ROOT/drivers
 
 echo '[+] Add kernel su driver to Makefile'
 
