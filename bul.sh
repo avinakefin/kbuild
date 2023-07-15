@@ -606,9 +606,9 @@ gen_zip() {
         mv "$KERNEL_DIR"/out/arch/arm64/boot/dtb AnyKernel3/dtb
 
 	cd AnyKernel3 || exit
-        cp -af anykernel-real.sh anykernel.sh
+        #cp -af anykernel-real.sh anykernel.sh
 
-	zip -r9 "$ZIPNAME" * -x .git README.md anykernel-real.sh .gitignore zipsigner* *.zip
+	zip -r9 "$ZIPNAME" * -x *.zip
 
 	## Prepare a final zip variable
 	ZIP_FINAL="$ZIPNAME"
