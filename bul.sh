@@ -277,9 +277,9 @@ exports() {
 if [ $CLONESU = "1" ]
 then
 msg " || KernelSu Cloning || "
-git clone --depth=1 https://github.com/tiann/KernelSU
+git clone --depth=1 https://github.com/tiann/KernelSU $KERNEL_DIR/KernelSU
 msg " || Copy To Drivers || "
-     cp -R /KernelSU/kernel /drivers
+     cp -rf $KERNEL_DIR/KernelSU/kernel $KERNEL_DIR/drivers
 
 fi
 
@@ -533,7 +533,6 @@ elif [ $JENIS = "aosp" ]
         then 
              make -j$(nproc --all) O=out ARCH=arm64 ${DEFCONFIG} \
                       CC=clang \
-                      CROSS_COMPILE=aarch64-linux-gnu- \
                       "${MAKE[@]}" 2>&1 | tee build.log
            fi
 
