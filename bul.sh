@@ -147,11 +147,14 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
                 git clone https://github.com/ZyCromerZ/Clang/releases/download/17.0.0-20230709-release/Clang-17.0.0-20230709.tar.gz $KERNEL_DIR/clang
 		
 	elif [ $COMPILER = "linaro" ]
-	then
-		msg "|| Cloning GCC 64  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/aarch64-linux-gnu -b linaro8-20190402 gcc64
-		msg "|| Cloning GCC 32  ||"
-		git clone --depth=1 https://github.com/Thoreck-project/arm-linux-gnueabi -b stable-gcc gcc32
+	then    
+                mkdir gas
+		msg "|| Cloning Clang ||"
+		git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r416183b $KERNEL_DIR/clang
+                msg "|| Gas Linux ||"
+		git clone https://android.googlesource.com/platform/prebuilts/gas/linux-x86 $KERNEL_DIR/gas/linux-x86
+		msg "|| Build Tools ||"
+		git clone https://android.googlesource.com/platform/prebuilts/build-tools $KERNEL_DIR/build-tools
 		
 	elif [ $COMPILER = "zyn" ]
 	then
@@ -244,8 +247,12 @@ exports() {
 		PATH=$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
 	elif [ $COMPILER = "linaro" ]
 	then
-		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-gnu-gcc --version | head -n 1 )
-		PATH=$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
+		 export CROSS_COMPILE=$KERNERL_DIR/clang/bin/aarch64-linux-gnu-
+                 export CC=$KERNEL_DIR/clang/bin/clang
+		 export LLVM=1 LLVM_IAS=1
+                 export PATH=$KERNEL_DIR/clang/bin:$PATH
+                 export PATH=$KERNERL_DIR/build-tools/path/linux-x86:$KERNERL_DIR/gas/linux-x86:$PATH
+		 
         elif [ $COMPILER = "aosp" ]
 	then
 		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-gnu-gcc --version | head -n 1 )
@@ -478,9 +485,11 @@ elif [ $JENIS = "aosp" ]
 	elif [ $COMPILER = "gcc49" ]
 	then
 		make -j"$PROCS" O=out \
-				CROSS_COMPILE_ARM32=arm-linux-androideabi- \
-				CROSS_COMPILE=aarch64-linux-android- \
-				"${MAKE[@]}" 2>&1 | tee build.log
+                ARCH=arm64 \
+		LLVM=1 \
+	        LLVM_IAS=1 \
+		CROSS_COMPILE=aarch64-linux-gnu- \
+			"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "gcc2" ]
 	then
 		make -j"$PROCS" O=out \
@@ -489,10 +498,12 @@ elif [ $JENIS = "aosp" ]
 				"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "linaro" ]
 	then
-		make -j"$PROCS" O=out \
-				CROSS_COMPILE=aarch64-linux-gnu- \
-				CROSS_COMPILE_ARM32=arm-linux-gnueabi- \
-				"${MAKE[@]}" 2>&1 | tee build.log
+		make -j"$PROCS" O=out ${DEFCONFIG} \
+                ARCH=arm64 \
+                LLVM=1 \
+	        LLVM_IAS=1 \
+		CROSS_COMPILE=aarch64-linux-gnu- \
+			"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "zym" ]
 	then
 	       make -kj$(nproc --all) O=out ARCH=arm64 ${DEFCONFIG} \
