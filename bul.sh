@@ -293,7 +293,7 @@ fi
 if [ $KERNELSU = "1" ]
 then
 msg " || KernelSu Patching || "
-curl -LSs "https://raw.githubusercontent.com/avinakefin/kbuild/main/su.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
 fi
 
 ##---------------------------------------------------------##
