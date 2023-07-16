@@ -284,16 +284,11 @@ exports() {
 if [ $CLONESU = "1" ]
 then
 msg " || KernelSu Cloning || "
-git clone --depth=1 https://github.com/tiann/KernelSU $KERNEL_DIR/KernelSU
-msg " || Copy To Drivers || "
-     cp -rf $KERNEL_DIR/KernelSU/kernel $KERNEL_DIR/drivers
+mkdir temp_dir   
+git clone https://github.com/avinakefin/KernelSU temp_dir # Clone your git repo inside it
+mv temp_dir/kernel $KERNEL_DIR/drivers # Move the recently cloned repo content from the temp_dir to your existing_dir
+rm -rf temp_dir # Remove the created temporary
 
-fi
-
-if [ $KERNELSU = "1" ]
-then
-msg " || KernelSu Patching || "
-curl -LSs "https://raw.githubusercontent.com/avinakefin/kbuild/main/su.sh" | bash -
 fi
 
 ##---------------------------------------------------------##
