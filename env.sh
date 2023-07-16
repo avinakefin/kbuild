@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=tes
+KERNEL_BRANCH=KERNEL.PLATFORM.1.0.r1-15300-kernel.0
 
 # The name of the device for which the kernel is built
 MODEL="Poco F5"
@@ -46,7 +46,7 @@ K_HOST=$HOST
 
 # arch & subarch
 K_ARCH=arm64
-K_SUBARCH=arm64
+#K_SUBARCH=arm64
 
 # Opsi for kernel SU 1 For yes 0 for no
 KERNELSU=0
