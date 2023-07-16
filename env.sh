@@ -49,7 +49,7 @@ K_ARCH=arm64
 #K_SUBARCH=arm64
 
 # Opsi for kernel SU 1 For yes 0 for no
-KERNELSU=0
+KERNELSU=1
 # Clone kernelSU 1 yes or 0 no
 CLONESU=0
 # kernel_f3 source
