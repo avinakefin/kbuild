@@ -34,7 +34,7 @@ cd "$GKI_ROOT"
      #cp -rf $GKI_ROOT/KernelSU/kernel $GKI_ROOT/drivers
 
 echo '[+] Add kernel su driver to Makefile'
-#git clone https://github.com/avinakefin/KernelSU $DRIVER_DIR
+wget https://github.com/avinakefin/KernelSU $DRIVER_DIR
 
 DRIVER_MAKEFILE=$DRIVER_DIR/Makefile
 DRIVER_KCONFIG=$DRIVER_DIR/Kconfig
