@@ -34,7 +34,10 @@ cd "$GKI_ROOT"
      #cp -rf $GKI_ROOT/KernelSU/kernel $GKI_ROOT/drivers
 
 echo '[+] Add kernel su driver to Makefile'
-wget https://github.com/avinakefin/KernelSU $DRIVER_DIR
+mkdir temp_dir   
+git clone https://github.com/avinakefin/KernelSU temp_dir # Clone your git repo inside it
+mv temp_dir/* $DRIVER_DIR # Move the recently cloned repo content from the temp_dir to your existing_dir
+rm -rf temp_dir # Remove the created temporary 
 
 DRIVER_MAKEFILE=$DRIVER_DIR/Makefile
 DRIVER_KCONFIG=$DRIVER_DIR/Kconfig
