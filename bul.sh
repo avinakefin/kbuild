@@ -585,27 +585,6 @@ gen_zip() {
             mv "$KERNEL_DIR"/out/arch/arm64/boot/Image AnyKernel3/Image
         fi
 
-        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona.dtb]
-        then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona.dtb AnyKernel3/kona.dtb
-
-        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona-v2.dtb]
-        then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona-v2.dtb AnyKernel3/kona-v2.dtb
-        fi
-
-        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom/*.dtb]
-        then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom/kona.dtb AnyKernel3/dtb
-
-        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom/kona-v2.dtb]
-        then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom/kona-v2.dtb AnyKernel3/kona-v2.dtb
-        fi
-
-        find $KERNEL_DIR/out/arch/arm64/boot/dts/vendor/qcom -name '*.dtb' -exec cat {} + >$KERNEL_DIR/out/arch/arm64/boot/dtb
-        mv "$KERNEL_DIR"/out/arch/arm64/boot/dtb AnyKernel3/dtb
-
 	cd AnyKernel3 || exit
         #cp -af anykernel-real.sh anykernel.sh
 
