@@ -51,3 +51,4 @@ K_SUBARCH=arm64
 # Clone kernelSU 1 yes or 0 no
 CLONESU=1
 # kernel_f3 source
+supat=1
