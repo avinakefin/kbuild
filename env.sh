@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=base
+KERNEL_BRANCH=alioth
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
@@ -27,7 +27,7 @@ JENIS=aosp
 # 1 if clone anykernel 0 for have anykernel
 ANYKERNEL=1
 
-VARIAN=3.0
+VARIAN=3.0-rc2
 
 # Build Type
 BUILD_TYPE="Stable"
