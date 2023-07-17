@@ -16,11 +16,20 @@ else
 fi
 
 test -d "$GKI_ROOT/KernelSU" || git clone https://github.com/tiann/KernelSU
+cd "$GKI_ROOT/KernelSU"
+git stash
+if [ "$(git status | grep -Po 'v\d+(\.\d+)*' | head -n1)" ]; then
+     git checkout main
+fi
+git pull
+if [ -z "${1-}" ]; then
+    git checkout "$(git describe --abbrev=0 --tags)"
+else
+    git checkout "mainSU"
+fi
 cd "$GKI_ROOT"
 
-echo "[+] buat folder kernelsu"
-mkdir drivers/kernelsu
-
+echo "[+] GKI_ROOT: $GKI_ROOT"
 echo "[+] Copy kernel su driver to $DRIVER_DIR"
 
 cd "$DRIVER_DIR"
@@ -30,20 +39,12 @@ elif test -d "$GKI_ROOT/drivers"; then
      ln -sf "../KernelSU/kernel" "kernelsu"
 fi
 cd "$GKI_ROOT"
-#echo "copy file to driver"
-     #cp -rf $GKI_ROOT/KernelSU/kernel $GKI_ROOT/drivers
 
 echo '[+] Add kernel su driver to Makefile'
-mkdir temp_dir   
-git clone https://github.com/avinakefin/KernelSU temp_dir # Clone your git repo inside it
-mv temp_dir/* $DRIVER_DIR # Move the recently cloned repo content from the temp_dir to your existing_dir
-rm -rf temp_dir # Remove the created temporary 
 
 DRIVER_MAKEFILE=$DRIVER_DIR/Makefile
 DRIVER_KCONFIG=$DRIVER_DIR/Kconfig
 grep -q "kernelsu" "$DRIVER_MAKEFILE" || printf "obj-\$(CONFIG_KSU) += kernelsu/\n" >> "$DRIVER_MAKEFILE"
 grep -q "kernelsu" "$DRIVER_KCONFIG" || sed -i "/endmenu/i\\source \"drivers/kernelsu/Kconfig\"" "$DRIVER_KCONFIG"
-grep -q "drivers/kernel" "$DRIVER_MAKEFILE" || printf "obj-\$(CONFIG_KSU) += kernel/\n" >> "$DRIVER_MAKEFILE"
-grep -q "drivers/kernel" "$DRIVER_KCONFIG" || sed -i "/endmenu/i\\source \"drivers/kernel/Kconfig\"" "$DRIVER_KCONFIG"
 
 echo '[+] Done.'
