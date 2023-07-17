@@ -291,10 +291,10 @@ rm -rf temp_dir # Remove the created temporary
 
 fi
 
-if [ $SUPAT ="1" ]
+if [ $SUPAT = "1" ]
 then
 msg " || patch kernelSu Online || "
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/avinakefin/kbuild/alioth/su.sh" | bash -
 fi
 ##---------------------------------------------------------##
 
@@ -360,7 +360,7 @@ tg_send_files(){
 
 ##----------------------------------------------------------##
 
-curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+#curl -LSs "https://raw.githubusercontent.com/avinakefin/kbuild/alioth/su.sh" | bash -
 
 build_kernel() {
 	if [ $INCREMENTAL = 0 ]
