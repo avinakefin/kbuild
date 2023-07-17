@@ -51,4 +51,4 @@ CLONESU=0
 SUPAT=0
 
 # 1 if clone anykernel 0 for have anykernel
-ANYKERNEL=0
+ANYKERNEL=1
