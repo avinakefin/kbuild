@@ -48,7 +48,7 @@ K_SUBARCH=arm64
 # Clone kernelSU 1 yes or 0 no
 CLONESU=0
 # kernel_f3 source
-supat=1
+SUPAT=1
 
 # 1 if clone anykernel 0 for have anykernel
 ANYKERNEL=0
