@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=alioth
+KERNEL_BRANCH=base
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
@@ -49,6 +49,6 @@ K_ARCH=arm64
 K_SUBARCH=arm64
 
 # Clone kernelSU 1 yes or 0 no
-CLONESU=1
+CLONESU=0
 # kernel_f3 source
 supat=1
