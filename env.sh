@@ -24,9 +24,6 @@ NAMA=Samsoe
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=aosp
 
-# 1 if clone anykernel 0 for have anykernel
-ANYKERNEL=1
-
 VARIAN=3.0-rc2
 
 # Build Type
@@ -52,3 +49,6 @@ K_SUBARCH=arm64
 CLONESU=0
 # kernel_f3 source
 supat=1
+
+# 1 if clone anykernel 0 for have anykernel
+ANYKERNEL=0
