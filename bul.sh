@@ -291,6 +291,11 @@ rm -rf temp_dir # Remove the created temporary
 
 fi
 
+if [ $supat ="1" ]
+then
+msg " || patch kernelSu Online || "
+curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+fi
 ##---------------------------------------------------------##
 
 tg_post_msg() {
