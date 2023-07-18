@@ -49,5 +49,6 @@ K_ARCH=arm64
 #K_SUBARCH=arm64
 
 # Clone kernelSU 1 yes or 0 no
-CLONESU=0
-# kernel_f3 source
+CLONESU=1
+# kernel_akane source
+KPROFILES=1
