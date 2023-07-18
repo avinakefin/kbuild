@@ -285,8 +285,8 @@ if [ $CLONESU = "1" ]
 then
 msg " || KernelSu Cloning || "
 mkdir temp_dir   
-git clone https://github.com/avinakefin/KernelSU temp_dir # Clone your git repo inside it
-mv temp_dir/kernel $KERNEL_DIR/drivers # Move the recently cloned repo content from the temp_dir to your existing_dir
+git clone https://github.com/avinakefin/KernelSU temp_dir/kernel # Clone your git repo inside it
+mv /temp_dir/kernel $KERNEL_DIR/drivers # Move the recently cloned repo content from the temp_dir to your existing_dir
 rm -rf temp_dir # Remove the created temporary
 
 fi
