@@ -25,7 +25,7 @@ NAMA=Yaknah_1.0
 JENIS=aosp
 
 # 1 if clone anykernel 0 for have anykernel
-ANYKERNEL=0
+ANYKERNEL=1
 
 VARIAN=Stable
 
