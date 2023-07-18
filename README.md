@@ -1,1 +1,1 @@
-Kernel Marble support KSU so don't forget to clone anu
+Kernel Marble support KSU so don't forget to clone repo
