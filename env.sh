@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=thirteen
+KERNEL_BRANCH=KERNEL.PLATFORM.1.0.r1-15300-kernel.0
 
 # The name of the device for which the kernel is built
 MODEL="Poco F5"
@@ -25,7 +25,7 @@ NAMA=Yaknah_1.0
 JENIS=aosp
 
 # 1 if clone anykernel 0 for have anykernel
-ANYKERNEL=1
+ANYKERNEL=0
 
 VARIAN=Stable
 
