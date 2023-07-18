@@ -286,7 +286,7 @@ then
 msg " || KernelSu Cloning || "
 mkdir temp_dir  
 cd temp_dir || exit
-git clone https://github.com/avinakefin/KernelSU kernel# Clone your git repo inside it
+git clone https://github.com/avinakefin/KernelSU kernel # Clone your git repo inside it
 mv temp_dir/kernel /drivers # Move the recently cloned repo content from the temp_dir to your existing_dir
 rm -rf temp_dir # Remove the created temporary
 cd .. || exit
