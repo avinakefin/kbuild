@@ -19,15 +19,15 @@ DEVICE=$DEVICE_CODENAME
 MANUFACTURERINFO="Xioami"
 
 # Kernel Variant
-NAMA=Yaknah_F5
+NAMA=Yaknah_1.0
 
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=aosp
 
 # 1 if clone anykernel 0 for have anykernel
-ANYKERNEL=1
+ANYKERNEL=0
 
-VARIAN=1.0-anu
+VARIAN=Stable
 
 # Build Type
 BUILD_TYPE="Stable"
@@ -49,6 +49,6 @@ K_ARCH=arm64
 #K_SUBARCH=arm64
 
 # Clone kernelSU 1 yes or 0 no
-CLONESU=1
+CLONESU=0
 # kernel_akane source
-KPROFILES=1
+KPROFILES=0
