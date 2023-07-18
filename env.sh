@@ -25,7 +25,7 @@ NAMA=Yaknah_1.0
 JENIS=aosp
 
 # 1 if clone anykernel 0 for have anykernel
-ANYKERNEL=0
+ANYKERNEL=1
 
 VARIAN=Stable
 
@@ -35,7 +35,7 @@ BUILD_TYPE="Stable"
 #
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'zyn (clang)' or 'gcc49' , 'linaro for kernel 5.4 'gcc2', clang2
-COMPILER=clang
+COMPILER=linaro
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
@@ -46,7 +46,7 @@ K_HOST=$HOST
 
 # arch & subarch
 K_ARCH=arm64
-K_SUBARCH=arm64
+#K_SUBARCH=arm64
 
 # Clone kernelSU 1 yes or 0 no
 CLONESU=0
