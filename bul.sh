@@ -284,20 +284,25 @@ exports() {
 if [ $CLONESU = "1" ]
 then
 msg " || KernelSu Cloning || "
-mkdir temp_dir   
-git clone https://github.com/avinakefin/KernelSU temp_dir # Clone your git repo inside it
-mv temp_dir/kernel $KERNEL_DIR/drivers # Move the recently cloned repo content from the temp_dir to your existing_dir
+mkdir temp_dir  
+cd temp_dir || exit
+git clone https://github.com/avinakefin/KernelSU # Clone your git repo inside it
+mv temp_dir/kernel /drivers # Move the recently cloned repo content from the temp_dir to your existing_dir
 rm -rf temp_dir # Remove the created temporary
+cd .. || exit
+cd /home/runner/work/kbuild/kbuild/kernel
 
 fi
-if [ $KPROFILE = "1" ]
+if [ $KPROFILES = "1" ]
 then
 msg " || Kprofiles Cloning || "
 mkdir kprofiles   
-git clone -b staging https://github.com/dakkshesh07/Kprofiles kprofiles # Clone your git repo inside it
-mv kprofiles $KERNEL_DIR/drivers/misc # Move the recently cloned repo content from the temp_dir to your existing_dir
+cd kprofiles || exit
+git clone -b staging https://github.com/dakkshesh07/Kprofiles # Clone your git repo inside it
+mv kprofiles /drivers/misc # Move the recently cloned repo content from the temp_dir to your existing_dir
 rm -rf kprofiles # Remove the created temporary
-
+cd .. || exit
+cd /home/runner/work/kbuild/kbuild/kernel
 fi
 ##---------------------------------------------------------##
 
