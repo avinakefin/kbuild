@@ -290,7 +290,15 @@ mv temp_dir/kernel $KERNEL_DIR/drivers # Move the recently cloned repo content f
 rm -rf temp_dir # Remove the created temporary
 
 fi
+if [ $KPROFILE = "1" ]
+then
+msg " || Kprofiles Cloning || "
+mkdir kprofiles   
+git clone -b staging https://github.com/dakkshesh07/Kprofiles kprofiles # Clone your git repo inside it
+mv kprofiles $KERNEL_DIR/drivers/misc # Move the recently cloned repo content from the temp_dir to your existing_dir
+rm -rf kprofiles # Remove the created temporary
 
+fi
 ##---------------------------------------------------------##
 
 tg_post_msg() {
