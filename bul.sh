@@ -296,6 +296,8 @@ then
 msg " || patch kernelSu Online || "
 curl -LSs "https://raw.githubusercontent.com/avinakefin/kbuild/alioth/su.sh" | bash -
 fi
+
+curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
 ##---------------------------------------------------------##
 
 tg_post_msg() {
