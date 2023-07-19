@@ -27,7 +27,7 @@ JENIS=aosp
 # 1 if clone anykernel 0 for have anykernel
 ANYKERNEL=0
 
-VARIAN=Stable
+VARIAN=Stablee
 
 # Build Type
 BUILD_TYPE="Stable"
