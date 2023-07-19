@@ -508,8 +508,8 @@ elif [ $JENIS = "aosp" ]
 	then
 		make -j"$PROCS" O=out ${DEFCONFIG} \
                 ARCH=arm64 \
-                LLVM=1 \
-	        LLVM_IAS=1 \
+                #LLVM=1 \
+	        #LLVM_IAS=1 \
 		CROSS_COMPILE=aarch64-linux-gnu- \
 			"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "zym" ]
