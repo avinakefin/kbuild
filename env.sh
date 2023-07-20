@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=thirteen
+KERNEL_BRANCH=13
 
 # The name of the device for which the kernel is built
 MODEL="Poco F5"
@@ -27,7 +27,7 @@ JENIS=aosp
 # 1 if clone anykernel 0 for have anykernel
 ANYKERNEL=0
 
-VARIAN=Stablee
+VARIAN=AOSP-OOS-MIUI
 
 # Build Type
 BUILD_TYPE="Stable"
@@ -35,7 +35,7 @@ BUILD_TYPE="Stable"
 #
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'zyn (clang)' or 'gcc49' , 'linaro for kernel 5.4 'gcc2', clang2
-COMPILER=clang
+COMPILER=linaro
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
