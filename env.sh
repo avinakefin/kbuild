@@ -24,7 +24,7 @@ NAMA=Samsoe
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=aosp
 
-VARIAN=3.0-rc2
+VARIAN=3.0-Reloaded
 
 # Build Type
 BUILD_TYPE="Stable"
