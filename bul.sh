@@ -284,17 +284,11 @@ exports() {
 if [ $CLONESU = "1" ]
 then
 msg " || KernelSu Cloning || "
-mkdir temp_dir   
-git clone https://github.com/avinakefin/KernelSU temp_dir/kernel # Clone your git repo inside it
-mv /temp_dir/kernel $KERNEL_DIR/drivers # Move the recently cloned repo content from the temp_dir to your existing_dir
-rm -rf temp_dir # Remove the created temporary
-
-fi
-
-if [ $SUPAT = "1" ]
-then
-msg " || patch kernelSu Online || "
-curl -LSs "https://raw.githubusercontent.com/avinakefin/kbuild/alioth/su.sh" | bash -
+cd $KERNEL_DIR/drivers/
+mkdir kernel 
+cd kernel
+git clone https://github.com/avinakefin/KernelSU # Clone your git repo inside it
+cd ..
 fi
 
 ##---------------------------------------------------------##
