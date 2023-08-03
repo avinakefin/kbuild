@@ -284,11 +284,10 @@ exports() {
 if [ $CLONESU = "1" ]
 then
 msg " || KernelSu Cloning || "
-mkdir temp_dir  
-cd temp_dir || exit
-git clone https://github.com/avinakefin/KernelSU temp_dir/kernel # Clone your git repo inside it
-mv /temp_dir/kernel $KERNEL_DIR/drivers # Move the recently cloned repo content from the temp_dir to your existing_dir
-rm -rf temp_dir # Remove the created temporary
+cd $KERNEL_DIR/drivers/
+mkdir kernel 
+cd kernel
+git clone https://github.com/avinakefin/KernelSU # Clone your git repo inside it
 cd .. || exit
 cd /home/runner/work/kbuild/kbuild/kernel
 
@@ -298,9 +297,8 @@ then
 msg " || Kprofiles Cloning || "
 mkdir kprofiles   
 cd kprofiles || exit
-git clone -b staging https://github.com/dakkshesh07/Kprofiles kprofiles# Clone your git repo inside it
+git clone -b main https://github.com/dakkshesh07/Kprofiles kprofiles# Clone your git repo inside it
 mv kprofiles /drivers/misc # Move the recently cloned repo content from the temp_dir to your existing_dir
-rm -rf kprofiles # Remove the created temporary
 cd .. || exit
 cd /home/runner/work/kbuild/kbuild/kernel
 fi
