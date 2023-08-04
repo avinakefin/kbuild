@@ -285,9 +285,10 @@ if [ $CLONESU = "1" ]
 then
 msg " || KernelSu Cloning || "
 cd $KERNEL_DIR/drivers/
-mkdir kernel
+mkdir kernel 
 cd kernel
-git clone -b main https://github.com/avinakefin/KernelSU $KERNEL_DIR/drivers/kernel# Clone your git repo inside it
+git clone https://github.com/avinakefin/KernelSU # Clone your git repo inside it
+cd ..
 cd .. || exit
 cd /home/runner/work/kbuild/kbuild/kernel
 fi
