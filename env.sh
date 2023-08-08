@@ -24,7 +24,7 @@ NAMA=Samsoe
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=Stable
 
-VARIAN=3.1-Fix
+VARIAN=3.1-KcalDefault
 
 # Build Type
 BUILD_TYPE="Stable"
