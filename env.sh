@@ -46,7 +46,7 @@ K_HOST=$HOST
 
 # arch & subarch
 K_ARCH=arm64
-K_SUBARCH=arm64
+# K_SUBARCH=arm64
 
 # Clone kernelSU 1 yes or 0 no
 CLONESU=0
