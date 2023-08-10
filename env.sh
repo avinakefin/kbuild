@@ -51,4 +51,4 @@ K_ARCH=arm64
 # Clone kernelSU 1 yes or 0 no
 CLONESU=0
 # kernel_akane source
-KPROFILES=1
+KPROFILES=0
