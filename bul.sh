@@ -283,7 +283,7 @@ exports() {
 
 curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
 
-if [ $CLONESU = "1" ]
+if [ $CLONESU = "0" ]
 then
 msg " || KernelSu Cloning || "
 cd $KERNEL_DIR/drivers/
@@ -292,8 +292,8 @@ cd kernel
 git clone https://github.com/avinakefin/KernelSU # Clone your git repo inside it
 cd .. || exit
 cd /home/runner/work/kbuild/kbuild/kernel
-
 fi
+
 if [ $KPROFILES = "1" ]
 then
 msg " || Kprofiles Cloning || "
