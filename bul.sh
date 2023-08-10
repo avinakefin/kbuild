@@ -281,6 +281,8 @@ exports() {
 		BOT_BUILD_URL PROCS TOKEN
 }
 
+curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+
 if [ $CLONESU = "1" ]
 then
 msg " || KernelSu Cloning || "
