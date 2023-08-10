@@ -472,11 +472,7 @@ elif [ $JENIS = "aosp" ]
 	then
          make -j"$PROCS" O=out \
 	CC=clang \
-	AR=llvm-ar \
-        NM=llvm-nm \
-        OBJCOPY=llvm-objcopy \
-        OBJDUMP=llvm-objdump \
-	STRIP=llvm-strip \
+        ARCH=arm64 \
         CROSS_COMPILE=aarch64-linux-gnu- \
 		 "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clang2" ]
