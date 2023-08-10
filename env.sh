@@ -4,10 +4,10 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=main
+KERNEL_BRANCH=caf
 
 # The name of the device for which the kernel is built
-MODEL="Poco F3"
+MODEL="Poco F5"
 
 # The codename of the device
 DEVICE=$DEVICE_CODENAME
@@ -25,12 +25,12 @@ NAMA=Yaknah
 JENIS=aosp
 
 # 1 if clone anykernel 0 for have anykernel
-ANYKERNEL=0
+ANYKERNEL=1
 
 VARIAN=AOSP-OOS-MIUI
 
 # Build Type
-BUILD_TYPE="Evo"
+BUILD_TYPE="Last_2.0"
 
 #
 # Specify compiler.
@@ -46,9 +46,9 @@ K_HOST=$HOST
 
 # arch & subarch
 K_ARCH=arm64
-K_SUBARCH=arm64
+# K_SUBARCH=arm64
 
 # Clone kernelSU 1 yes or 0 no
 CLONESU=0
 # kernel_akane source
-KPROFILES=0
+KPROFILES=1
