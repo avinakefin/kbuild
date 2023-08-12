@@ -578,33 +578,22 @@ gen_zip() {
         if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img ]
         then
             mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel3/dtbo.img
+	elif [ -f "$KERNEL_DIR"/AnyKernel3/dtbo.img ]
+        then
+	   msg " || DTBO Kosong Skiping dtbo ||"
         fi
     
         if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb ]
         then
             mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
     
+        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz ]
+        then
+            mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz AnyKernel3/Image.gz
+
         elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image ]
         then
             mv "$KERNEL_DIR"/out/arch/arm64/boot/Image AnyKernel3/Image
-        fi
-
-        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona.dtb]
-        then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona.dtb AnyKernel3/kona.dtb
-
-        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona-v2.dtb]
-        then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom-base/kona-v2.dtb AnyKernel3/kona-v2.dtb
-        fi
-
-        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom/*.dtb]
-        then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom/kona.dtb AnyKernel3/dtb
-
-        elif [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom/kona-v2.dtb]
-        then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/dts/vendor/qcom/kona-v2.dtb AnyKernel3/kona-v2.dtb
         fi
 
         find $KERNEL_DIR/out/arch/arm64/boot/dts/vendor/qcom -name '*.dtb' -exec cat {} + >$KERNEL_DIR/out/arch/arm64/boot/dtb
