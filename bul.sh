@@ -574,13 +574,19 @@ elif [ $JENIS = "aosp" ]
 
 gen_zip() {
 	msg "|| Zipping into a flashable zip ||"
+	if [ $build_dtbo = "1" ]
+	then
+             if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img ]
+             then
+                 mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel3/dtbo.img
+	     elif
+                msg " || Dtbo tidak berhasil di temukan || "
+	     fi
+        fi
 	
-        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img ]
+	if [ $build_dtbo ="0" ]
         then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel3/dtbo.img
-	elif [ -f "$KERNEL_DIR"/AnyKernel3/dtbo.img ]
-        then
-	   msg " || DTBO Kosong Skiping dtbo ||"
+	    msg " || Dtbo Not Build skip proses ||"
         fi
     
         if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb ]
