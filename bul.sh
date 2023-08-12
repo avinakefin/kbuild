@@ -599,7 +599,7 @@ gen_zip() {
 	cd AnyKernel3 || exit
         #cp -af anykernel-real.sh anykernel.sh
 
-	zip -r9 "$ZIPNAME" * -x *.zip
+	zip -r -9 "$ZIPNAME" * -x *.zip
 
 	## Prepare a final zip variable
 	ZIP_FINAL="$ZIPNAME"
