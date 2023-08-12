@@ -593,13 +593,9 @@ gen_zip() {
         then
             mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
     
-        else if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz ]
+        else [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz ]
         
             mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz AnyKernel3/Image.gz
-
-        else [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image ]
-        
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/Image AnyKernel3/Image
         fi
 	
         find $KERNEL_DIR/out/arch/arm64/boot/dts/vendor/qcom -name '*.dtb' -exec cat {} + >$KERNEL_DIR/out/arch/arm64/boot/dtb
