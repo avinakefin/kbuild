@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=main
+KERNEL_BRANCH=base
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
@@ -19,7 +19,7 @@ DEVICE=$DEVICE_CODENAME
 MANUFACTURERINFO="Xioami"
 
 # Kernel Variant
-NAMA=nAa
+NAMA=samsoe
 
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=Stable
@@ -52,4 +52,4 @@ CLONESU=0
 ANYKERNEL=0
 
 # if 1 build dtbo and 0 not build
-build_dtbo=0
+build_dtbo=1
