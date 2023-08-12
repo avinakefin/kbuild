@@ -584,7 +584,7 @@ gen_zip() {
 	     fi
         fi
 	
-	if [ $build_dtbo ="0" ]
+	if [ $build_dtbo = "0" ]
         then
 	    msg " || Dtbo Not Build skip proses ||"
         fi
