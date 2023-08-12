@@ -579,7 +579,7 @@ gen_zip() {
              if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img ]
              then
                  mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel3/dtbo.img
-	     elif
+	     else
                 msg " || Dtbo tidak berhasil di temukan || "
 	     fi
         fi
