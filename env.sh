@@ -50,3 +50,6 @@ CLONESU=0
 
 # 1 if clone anykernel 0 for have anykernel
 ANYKERNEL=0
+
+# if 1 build dtbo and 0 not build
+build_dtbo=0
