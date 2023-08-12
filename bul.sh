@@ -583,11 +583,6 @@ gen_zip() {
                 msg " || Dtbo tidak berhasil di temukan || "
 	     fi
         fi
-	
-	if [ $build_dtbo = "0" ]
-        then
-	    msg " || Dtbo Not Build skip proses ||"
-        fi
     
         if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb ]
         then
