@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=caf
+KERNEL_BRANCH=tes
 
 # The name of the device for which the kernel is built
 MODEL="Poco F5"
@@ -35,7 +35,7 @@ BUILD_TYPE="Last_2.0"
 #
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'zyn (clang)' or 'gcc49' , 'linaro for kernel 5.4 'gcc2', clang2
-COMPILER=clang
+COMPILER=linaro
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
