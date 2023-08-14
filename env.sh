@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=alioth
+KERNEL_BRANCH=base
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
@@ -24,10 +24,10 @@ NAMA=samsoe
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=Stable
 
-VARIAN=1
+VARIAN=3.2
 
 # Build Type
-BUILD_TYPE="Evo"
+BUILD_TYPE="MIUI OOS AOSP"
 
 #
 # Specify compiler.
