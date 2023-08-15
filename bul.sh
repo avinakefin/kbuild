@@ -281,7 +281,7 @@ exports() {
 		BOT_BUILD_URL PROCS TOKEN
 }
 
-if [ $CLONESU = "0" ]
+if [ $CLONESU = "1" ]
 then
 msg " || KernelSu Cloning || "
 cd $KERNEL_DIR/drivers/
