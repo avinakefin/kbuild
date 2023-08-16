@@ -25,7 +25,7 @@ NAMA=Yaknah
 JENIS=aosp
 
 # 1 if clone anykernel 0 for have anykernel
-ANYKERNEL=0
+ANYKERNEL=1
 
 VARIAN=AOSP-OOS-MIUI
 
@@ -49,6 +49,6 @@ K_ARCH=arm64
 # K_SUBARCH=arm64
 
 # Clone kernelSU 1 yes or 0 no
-CLONESU=0
+CLONESU=1
 # kernel_akane source
 KPROFILES=0
