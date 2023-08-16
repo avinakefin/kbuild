@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=Stable
+KERNEL_BRANCH=op
 # KERNEL.PLATFORM.1.0.r1-15300-kernel.0
 # The name of the device for which the kernel is built
 MODEL="Poco F5"
@@ -25,7 +25,7 @@ NAMA=Yaknah
 JENIS=aosp
 
 # 1 if clone anykernel 0 for have anykernel
-ANYKERNEL=1
+ANYKERNEL=0
 
 VARIAN=AOSP-OOS-MIUI
 
@@ -49,6 +49,6 @@ K_ARCH=arm64
 # K_SUBARCH=arm64
 
 # Clone kernelSU 1 yes or 0 no
-CLONESU=1
+CLONESU=0
 # kernel_akane source
 KPROFILES=0
