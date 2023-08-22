@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=stable
+KERNEL_BRANCH=Stable
 # KERNEL.PLATFORM.1.0.r1-15300-kernel.0
 # The name of the device for which the kernel is built
 MODEL="Poco F5"
