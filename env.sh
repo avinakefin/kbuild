@@ -30,7 +30,7 @@ ANYKERNEL=1
 VARIAN=AOSP-OOS-MIUI
 
 # Build Type
-BUILD_TYPE="Last_2.0"
+BUILD_TYPE="Last_3.0"
 
 #
 # Specify compiler.
