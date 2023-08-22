@@ -287,7 +287,7 @@ msg " || KernelSu Cloning || "
 cd $KERNEL_DIR/drivers/
 mkdir kernel 
 cd kernel
-git clone https://github.com/avinakefin/KernelSU # Clone your git repo inside it
+git clone https://github.com/avinakefin/kernelsu # Clone your git repo inside it
 cd .. || exit
 cd /home/runner/work/kbuild/kbuild/kernel
 fi
