@@ -503,9 +503,9 @@ elif [ $JENIS = "aosp" ]
 	then
 		make -j"$PROCS" O=out ${DEFCONFIG} \
                 ARCH=arm64 \
+		CC=clang \
                 LLVM=1 \
 	        LLVM_IAS=1 \
-		CROSS_COMPILE=aarch64-linux-gnu- \
 			"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "zym" ]
 	then
@@ -555,7 +555,7 @@ elif [ $JENIS = "aosp" ]
 
 		if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/$FILES ]
 		then
-			msg "|| Kernel successfully compiled ||"
+			post_msg "|| Kernel successfully compiled ||"
 
 			if [ $BUILD_DTBO = 1 ]
 			then
@@ -577,9 +577,9 @@ elif [ $JENIS = "aosp" ]
 ##--------------------------------------------------------------##
 
 gen_zip() {
-	msg "|| Zipping into a flashable zip ||"
+	post_msg "|| Zipping into a flashable zip ||"
 	
-        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img ]
+        if [ -a "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img ]
         then
             mv "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img AnyKernel3/dtbo.img
         fi
