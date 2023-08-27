@@ -556,7 +556,7 @@ elif [ $JENIS = "aosp" ]
 
 		if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/$FILES ]
 		then
-			post_msg "|| Kernel successfully compiled ||"
+			tg_post_msg "|| Kernel successfully compiled ||"
 
 			if [ $BUILD_DTBO = 1 ]
 			then
