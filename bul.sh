@@ -456,7 +456,7 @@ elif [ $JENIS = "aosp" ]
      then
      msg " || Non Miui Terdeteksi || "
  fi
-	msg "|| Started Compilation ||"
+	tg_post_msg "|| Started Compilation ||"
 	make O=out $KERNEL_DEFCONFIG
 	if [ $DEF_REG = 1 ]
 	then
@@ -578,7 +578,7 @@ elif [ $JENIS = "aosp" ]
 ##--------------------------------------------------------------##
 
 gen_zip() {
-	post_msg "|| Zipping into a flashable zip ||"
+	tg_post_msg "|| Zipping into a flashable zip ||"
 	
         if [ -a "$KERNEL_DIR"/out/arch/arm64/boot/dtbo.img ]
         then
