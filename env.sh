@@ -24,7 +24,7 @@ NAMA=samsoe
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=Stable
 
-VARIAN=3.2
+VARIAN=3.4
 
 # Build Type
 BUILD_TYPE="MIUI OOS AOSP"
@@ -32,7 +32,7 @@ BUILD_TYPE="MIUI OOS AOSP"
 #
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'zyn (clang)' or 'gcc49' , 'linaro for kernel 5.4 'gcc2', clang2
-COMPILER=linaro
+COMPILER=clang
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
@@ -52,4 +52,4 @@ CLONESU=0
 ANYKERNEL=0
 
 # if 1 build dtbo and 0 not build
-build_dtbo=1
+build_dtbo=0
