@@ -19,12 +19,12 @@ DEVICE=$DEVICE_CODENAME
 MANUFACTURERINFO="Xioami"
 
 # Kernel Variant
-NAMA=yaknah
+NAMA=samsoe
 
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=Stable
 
-VARIAN=12
+VARIAN=3.9
 
 # Build Type
 BUILD_TYPE="MIUI OOS AOSP"
