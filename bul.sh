@@ -191,7 +191,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
         if [ $ANYKERNEL = 1 ]
 	then
 		msg "|| Cloning Anykernel ||"
-                git clone --depth=1 -b alioth https://github.com/avinakefin/AnyKernel3 AnyKernel3
+                git clone --depth=1 -b samsoe https://github.com/avinakefin/AnyKernel3 AnyKernel3
 	fi
 	
         if [ $BUILD_DTBO = 1 ]
