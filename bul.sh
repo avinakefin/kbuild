@@ -161,13 +161,15 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 		msg "|| Cloning Zyn Clang||"
                 mkdir clang
 		cd clang || exit
-		wget https://github.com/ZyCromerZ/Clang/releases/download/17.0.0-20230714-release/Clang-17.0.0-20230714.tar.gz
-                tar -xf Clang-17.0.0-20230714.tar.gz
+		wget -q https://github.com/ZyCromerZ/Clang/releases/download/18.0.0-$V-release/Clang-18.0.0-$V.tar.gz
+	        tar -xf Clang-18.0.0-$V.tar.gz
 	elif [ $COMPILER = "aosp" ]
 	then
          msg "|| Android Clang  ||"
                mkdir clang
 	       cd clang || exit
+	       wget https://raw.githubusercontent.com/ZyCromerZ/Clang/main/Clang-main-lastbuild.txt
+	       V="$(cat Clang-main-lastbuild.txt)"
 	       wget -q https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master/clang-r450784e.tar.gz
 	       tar -xf clang*
 	       cd .. || exit
