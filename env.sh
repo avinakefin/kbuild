@@ -52,4 +52,4 @@ CLONESU=0
 ANYKERNEL=0
 
 # if 1 build dtbo and 0 not build
-build_dtbo=1
+build_dtbo=0
