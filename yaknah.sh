@@ -28,13 +28,7 @@ fi
 DEVICE=$2
 
 VERSION=BETA
-if [ "${DEVICE}" = "alioth" ]; then
 DEFCONFIG=alioth_defconfig
-MODEL="Poco F3"
-elif [ "${DEVICE}" = "aliothin" ]; then
-DEFCONFIG=alioth_defconfig
-MODEL="MI 11X"
-fi
 
 # Files
 IMAGE=$(pwd)/out/arch/arm64/boot/Image
@@ -51,7 +45,7 @@ KERVER=$(make kernelversion)
 COMMIT_HEAD=$(git log --oneline -1)
 
 # Date and Time
-DATE=$(TZ=Europe/Lisbon date +"%Y%m%d-%T")
+DATE=$(TZ=Asia/Jakarta date +"%Y%m%d-%T")
 TM=$(date +"%F%S")
 
 # Specify Final Zip Name
