@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=main
+KERNEL_BRANCH=alioth
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
@@ -19,12 +19,12 @@ DEVICE=$DEVICE_CODENAME
 MANUFACTURERINFO="Xioami"
 
 # Kernel Variant
-NAMA=yaknah
+NAMA=samsoe
 
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=Stable
 
-VARIAN=13
+VARIAN=3.9
 
 # Build Type
 BUILD_TYPE="MIUI OOS AOSP"
@@ -32,7 +32,7 @@ BUILD_TYPE="MIUI OOS AOSP"
 #
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'zyn (clang)' or 'gcc49' , 'linaro for kernel 5.4 'gcc2', clang2
-COMPILER=clang2
+COMPILER=clang
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
@@ -49,7 +49,7 @@ K_SUBARCH=arm64
 CLONESU=0
 
 # 1 if clone anykernel 0 for have anykernel
-ANYKERNEL=1
+ANYKERNEL=0
 
 # if 1 build dtbo and 0 not build
 build_dtbo=1
