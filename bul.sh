@@ -620,7 +620,7 @@ gen_zip() {
         -<code>$LINUXVER</code>
         
          ⚙️ <b>Compiler</b>
-        -<code>$KBUILD_COMPILER_STRING</code>
+        -<code>$HOST</code>
          
         #$BUILD_TYPE #$JENIS #$DEVICE"
         
