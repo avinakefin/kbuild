@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=alioth
+KERNEL_BRANCH=main
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
@@ -49,7 +49,7 @@ K_SUBARCH=arm64
 CLONESU=0
 
 # 1 if clone anykernel 0 for have anykernel
-ANYKERNEL=1
+ANYKERNEL=0
 
 # if 1 build dtbo and 0 not build
 build_dtbo=1
