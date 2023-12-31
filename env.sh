@@ -27,7 +27,7 @@ JENIS=Stable
 VARIAN=4.0
 
 # Build Type
-BUILD_TYPE="MIUI OOS AOSP"
+BUILD_TYPE="VHE"
 
 #
 # Specify compiler.
