@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=main
+KERNEL_BRANCH=alioth
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
@@ -27,7 +27,7 @@ JENIS=Stable
 VARIAN=4.0
 
 # Build Type
-BUILD_TYPE="Revert"
+BUILD_TYPE="samsoe VHE"
 
 #
 # Specify compiler.
