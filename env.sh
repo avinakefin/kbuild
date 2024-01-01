@@ -24,7 +24,7 @@ NAMA=samsoe
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=Stable
 
-VARIAN=4.0
+VARIAN=SE
 
 # Build Type
 BUILD_TYPE="samsoe VHE"
@@ -32,7 +32,7 @@ BUILD_TYPE="samsoe VHE"
 #
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'zyn (clang)' or 'gcc49' , 'linaro for kernel 5.4 'gcc2', clang2
-COMPILER=clang
+COMPILER=clang2
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
