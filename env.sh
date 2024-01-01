@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=alioth
+KERNEL_BRANCH=main
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
@@ -32,7 +32,7 @@ BUILD_TYPE="samsoe VHE"
 #
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'zyn (clang)' or 'gcc49' , 'linaro for kernel 5.4 'gcc2', clang2
-COMPILER=clang
+COMPILER=zyn
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
@@ -53,3 +53,5 @@ ANYKERNEL=1
 
 # if 1 build dtbo and 0 not build
 build_dtbo=1
+
+ksu_source=1
