@@ -295,6 +295,10 @@ cd .. || exit
 cd /home/runner/work/kbuild/kbuild/kernel
 fi
 
+if [ $ksu_source = "1"]
+then 
+curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+fi
 ##---------------------------------------------------------##
 
 tg_post_msg() {
@@ -505,17 +509,15 @@ elif [ $JENIS = "aosp" ]
 	        LLVM_IAS=1 \
 		CROSS_COMPILE=aarch64-linux-gnu- \
 			"${MAKE[@]}" 2>&1 | tee build.log
-	elif [ $COMPILER = "zym" ]
+	elif [ $COMPILER = "zyn" ]
 	then
 	       make -kj$(nproc --all) O=out ARCH=arm64 ${DEFCONFIG} \
 	       CC=clang \
-	       LLVM=1 \
-	       LLVM_IAS=1 \
-	       OBJDUMP=llvm-objdump \
-               STRIP=llvm-strip \
-	       OBJCOPY=llvm-objcopy \
-	       CROSS_COMPILE=aarch64-linux-gnu- \
-	       CROSS_COMPILE_COMPAT=arm-linux-gnueabi- \
+               ARCH=arm64 \
+               CROSS_COMPILE=aarch64-linux-gnu- \
+               NM=llvm-nm \
+               OBJDUMP=llvm-objdump \
+               STRIP=llvm-strip\
 	       "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clangxgcc" ]
 	then
