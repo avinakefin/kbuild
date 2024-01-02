@@ -32,7 +32,7 @@ BUILD_TYPE="KSU"
 #
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'zyn (clang)' or 'gcc49' , 'linaro for kernel 5.4 'gcc2', clang2
-COMPILER=clang
+COMPILER=miui
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
