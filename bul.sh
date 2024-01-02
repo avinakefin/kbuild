@@ -545,8 +545,9 @@ elif [ $JENIS = "aosp" ]
 	       "${MAKE[@]}" 2>&1 | tee build.log
         elif [ $COMPILER = "miui" ]
         then 
-             make -j$(nproc --all) O=out ARCH=arm64 ${DEFCONFIG} \
+             make -kj$(nproc --all) O=out ARCH=arm64 ${DEFCONFIG} \
                       CC=clang \
+		      CROSS_COMPILE=aarch64-linux-gnu- \
                       "${MAKE[@]}" 2>&1 | tee build.log
            fi
 
