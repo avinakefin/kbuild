@@ -24,7 +24,7 @@ NAMA=samsoe
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=Stable
 
-VARIAN=SE
+VARIAN=SE-RK
 
 # Build Type
 BUILD_TYPE="KSU"
@@ -46,7 +46,7 @@ K_ARCH=arm64
 K_SUBARCH=arm64
 
 # Clone kernelSU 1 yes or 0 no
-CLONESU=0
+CLONESU=1
 
 # 1 if clone anykernel 0 for have anykernel
 ANYKERNEL=1
