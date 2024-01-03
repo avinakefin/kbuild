@@ -22,9 +22,9 @@ MANUFACTURERINFO="Xioami"
 NAMA=samsoe
 
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
-JENIS=SDE_Thermal
+JENIS=SE
 
-VARIAN=SE-2024
+VARIAN=LowPanel
 
 # Build Type
 BUILD_TYPE="KSU"
