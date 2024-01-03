@@ -22,7 +22,7 @@ MANUFACTURERINFO="Xioami"
 NAMA=samsoe
 
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
-JENIS=Stable
+JENIS=SDE_Thermal
 
 VARIAN=SE-2024
 
