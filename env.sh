@@ -22,7 +22,7 @@ MANUFACTURERINFO="Xioami"
 NAMA=samsoe
 
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
-JENIS=SE
+JENIS=miui
 
 VARIAN=HighPanel
 
