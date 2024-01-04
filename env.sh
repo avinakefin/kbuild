@@ -24,7 +24,7 @@ NAMA=samsoe
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=SE
 
-VARIAN=Simple
+VARIAN=HighPanel
 
 # Build Type
 BUILD_TYPE="KSU"
