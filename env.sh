@@ -19,7 +19,7 @@ DEVICE=$DEVICE_CODENAME
 MANUFACTURERINFO="Xioami"
 
 # Kernel Variant
-NAMA=samsoe
+NAMA=samsoe-No
 
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=aosp
@@ -54,4 +54,4 @@ ANYKERNEL=1
 # if 1 build dtbo and 0 not build
 build_dtbo=1
 
-ksu_source=0
+ksu_source=1
