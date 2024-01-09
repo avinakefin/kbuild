@@ -148,13 +148,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 		
 	elif [ $COMPILER = "linaro" ]
 	then    
-                mkdir gas
-		msg "|| Cloning Clang ||"
-		git clone https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-r416183b $KERNEL_DIR/clang
-                msg "|| Gas Linux ||"
-		git clone https://android.googlesource.com/platform/prebuilts/gas/linux-x86 $KERNEL_DIR/gas/linux-x86
-		msg "|| Build Tools ||"
-		git clone https://android.googlesource.com/platform/prebuilts/build-tools $KERNEL_DIR/build-tools
+                https://github.com/Haseo97/Avalon-Clang-12.0.0 $KERNEL_DIR/clang
 		
 	elif [ $COMPILER = "zyn" ]
 	then
@@ -249,12 +243,9 @@ exports() {
 		PATH=$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
 	elif [ $COMPILER = "linaro" ]
 	then
-		 export CROSS_COMPILE=$KERNERL_DIR/clang/bin/aarch64-linux-gnu-
-                 export CC=$KERNEL_DIR/clang/bin/clang
-		 export LLVM=1 LLVM_IAS=1
-                 export PATH=$KERNEL_DIR/clang/bin:$PATH
-                 export PATH=$KERNERL_DIR/build-tools/path/linux-x86:$KERNERL_DIR/gas/linux-x86:$PATH
-		 
+		KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
+		PATH=$TC_DIR/bin/:$PATH
+  
         elif [ $COMPILER = "aosp" ]
 	then
 		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-gnu-gcc --version | head -n 1 )
@@ -503,7 +494,8 @@ elif [ $JENIS = "aosp" ]
 				"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "linaro" ]
 	then
-		make -j"$PROCS" O=out ${DEFCONFIG} \
+		make -j"$PROCS" O=out CC=clang ${DEFCONFIG} \
+                CC=clang \
                 ARCH=arm64 \
                 LLVM=1 \
 	        LLVM_IAS=1 \
