@@ -497,8 +497,6 @@ elif [ $JENIS = "aosp" ]
 		make -j"$PROCS" O=out CC=clang ${DEFCONFIG} \
                 CC=clang \
                 ARCH=arm64 \
-                LLVM=1 \
-	        LLVM_IAS=1 \
 		CROSS_COMPILE=aarch64-linux-gnu- \
 			"${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "zyn" ]
