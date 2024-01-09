@@ -148,7 +148,7 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
 		
 	elif [ $COMPILER = "linaro" ]
 	then    
-                https://github.com/Haseo97/Avalon-Clang-12.0.0 $KERNEL_DIR/clang
+                https://github.com/Haseo97/Avalon-Clang-12.0.0 -b 12.0.0 --depth=1 $KERNEL_DIR/clang
 		
 	elif [ $COMPILER = "zyn" ]
 	then
