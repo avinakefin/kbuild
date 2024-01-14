@@ -22,9 +22,9 @@ MANUFACTURERINFO="Xioami"
 NAMA=samsoe
 
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
-JENIS=samsoe
+JENIS=aosp
 
-VARIAN=4.2-apatch-manual
+VARIAN=SE
 
 # Build Type
 BUILD_TYPE="OOS AOSP HyoerOS"
