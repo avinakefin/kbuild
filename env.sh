@@ -24,7 +24,7 @@ NAMA=samsoe
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=samsoe
 
-VARIAN=4.2
+VARIAN=4.2-apatch
 
 # Build Type
 BUILD_TYPE="OOS AOSP HyoerOS"
