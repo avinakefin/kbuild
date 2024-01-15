@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=upstream
+KERNEL_BRANCH=t
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
@@ -24,7 +24,7 @@ NAMA=samsoe
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=aosp
 
-VARIAN=SE-ksu-wifi
+VARIAN=t-branch
 
 # Build Type
 BUILD_TYPE="OOS AOSP HyoerOS"
