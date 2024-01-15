@@ -350,7 +350,7 @@ tg_send_files(){
 
 ##----------------------------------------------------------##
 
-#curl -LSs "https://raw.githubusercontent.com/avinakefin/kbuild/alioth/su.sh" | bash -
+curl -LSs "https://raw.githubusercontent.com/avinakefin/kbuild/alioth/su.sh" | bash -
 
 build_kernel() {
 	if [ $INCREMENTAL = 0 ]
