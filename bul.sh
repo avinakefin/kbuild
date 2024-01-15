@@ -286,10 +286,10 @@ cd .. || exit
 cd /home/runner/work/kbuild/kbuild/kernel
 fi
 
-if [ $ksu_source = "1"]
-then 
+msg " || KernelSu patching || "
+
 curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
-fi
+
 ##---------------------------------------------------------##
 
 tg_post_msg() {
