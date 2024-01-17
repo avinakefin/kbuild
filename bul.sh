@@ -454,14 +454,16 @@ elif [ $JENIS = "aosp" ]
 
 	if [ $COMPILER = "clang" ]
 	then
-         make -j"$PROCS" O=out \
+         make -j"$PROCS" O=out ARCH=arm64 \
 	CC=clang \
 	AR=llvm-ar \
         NM=llvm-nm \
         OBJCOPY=llvm-objcopy \
         OBJDUMP=llvm-objdump \
 	STRIP=llvm-strip \
+        LD=ld.lld \
         CROSS_COMPILE=aarch64-linux-gnu- \
+	CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
 		 "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clang2" ]
 	then
