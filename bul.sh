@@ -162,14 +162,12 @@ DATE2=$(TZ=Asia/Jakarta date +"%Y%m%d")
          msg "|| Android Clang  ||"
                mkdir clang
 	       cd clang || exit
-	       wget https://raw.githubusercontent.com/ZyCromerZ/Clang/main/Clang-main-lastbuild.txt
-	       V="$(cat Clang-main-lastbuild.txt)"
-	       wget -q https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/master/clang-r450784e.tar.gz
+	       wget -q https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r487747c.tar.gz
 	       tar -xf clang*
 	       cd .. || exit
 	cd /home/runner/work/kbuild/kbuild/kernel
-	       git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git --depth=1 gcc64
-	       git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9.git --depth=1 gcc32
+	     #  git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_aarch64_aarch64-linux-android-4.9.git --depth=1 gcc64
+	      # git clone https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9.git --depth=1 gcc32
 	       
 	elif [$COMPILER ="miui" ]
         then
@@ -248,8 +246,10 @@ exports() {
   
         elif [ $COMPILER = "aosp" ]
 	then
-		KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-gnu-gcc --version | head -n 1 )
-		PATH=$TC_DIR/bin:/$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
+                KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
+		PATH=$TC_DIR/bin/:$PATH
+		#KBUILD_COMPILER_STRING=$("$GCC64_DIR"/bin/aarch64-linux-gnu-gcc --version | head -n 1 )
+		#PATH=$TC_DIR/bin:/$GCC64_DIR/bin/:$GCC32_DIR/bin/:/usr/bin:$PATH
 	elif [ $COMPILER = "miui"]
         then
            KBUILD_COMPILER_STRING=$("$TC_DIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')
@@ -461,9 +461,19 @@ elif [ $JENIS = "aosp" ]
         OBJCOPY=llvm-objcopy \
         OBJDUMP=llvm-objdump \
 	STRIP=llvm-strip \
-        LD=ld.lld \
         CROSS_COMPILE=aarch64-linux-gnu- \
-	CROSS_COMPILE_COMPAT=arm-linux-androideabi- \
+		 "${MAKE[@]}" 2>&1 | tee build.log
+        elif [ $COMPILER = "aosp" ]
+	then
+         make -j"$PROCS" O=out ARCH=arm64 \
+	CC=clang \
+	AR=llvm-ar \
+        NM=llvm-nm \
+	LD=ld.lld \
+        OBJCOPY=llvm-objcopy \
+        OBJDUMP=llvm-objdump \
+	STRIP=llvm-strip \
+        CROSS_COMPILE=aarch64-linux-gnu- \
 		 "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clang2" ]
 	then
