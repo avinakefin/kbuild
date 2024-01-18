@@ -475,7 +475,7 @@ elif [ $JENIS = "aosp" ]
 	STRIP=llvm-strip \
         CLANG_TRIPLE=aarch64-linux-gnu- \
         CROSS_COMPILE=aarch64-linux-android- \
-	CROSS_COMPILE_ARM32=arm-linux-androideabi- \
+
 		 "${MAKE[@]}" 2>&1 | tee build.log
 	elif [ $COMPILER = "clang2" ]
 	then
