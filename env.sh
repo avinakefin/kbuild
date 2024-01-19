@@ -24,7 +24,7 @@ NAMA=samsoe
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=aosp
 
-VARIAN=4.3
+VARIAN=4.3-last
 
 # Build Type
 BUILD_TYPE="OOS AOSP HyoerOS"
@@ -32,7 +32,7 @@ BUILD_TYPE="OOS AOSP HyoerOS"
 #
 # Specify compiler.
 # 'clang' or 'clangxgcc (zynz)' or 'zyn (clang)' or 'gcc49' , 'linaro for kernel 5.4 'gcc2', clang2
-COMPILER=aosp
+COMPILER=clang
 
 # Message on anykernel when installation
 MESSAGE="just flash and forget"
