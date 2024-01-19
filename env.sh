@@ -54,4 +54,4 @@ ANYKERNEL=0
 # if 1 build dtbo and 0 not build
 build_dtbo=1
 
-ksu_source=1
+ksu_source=0
