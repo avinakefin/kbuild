@@ -589,9 +589,9 @@ gen_zip() {
 	     fi
         fi
     
-        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb ]
+        if [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz ]
         then
-            mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz-dtb AnyKernel3/Image.gz-dtb
+            mv "$KERNEL_DIR"/out/arch/arm64/boot/Image.gz AnyKernel3/Image.gz
     
         else [ -f "$KERNEL_DIR"/out/arch/arm64/boot/Image ]
         
