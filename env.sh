@@ -4,7 +4,7 @@
 KERNEL_REPO=$KERNEL_SOURCE
 
 # Kernel Branch
-KERNEL_BRANCH=samsoe
+KERNEL_BRANCH=staging
 
 # The name of the device for which the kernel is built
 MODEL="Poco F3"
@@ -24,7 +24,7 @@ NAMA=samsoe
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=aosp
 
-VARIAN=4.4-nonKSU
+VARIAN=SE-Ema
 
 # Build Type
 BUILD_TYPE="OOS AOSP HyoerOS"
