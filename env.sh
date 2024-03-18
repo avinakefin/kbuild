@@ -24,7 +24,7 @@ NAMA=samsoe
 # untuk skalian fik ini itu pada miui , tulis kecil semua [ miui ]
 JENIS=aosp
 
-VARIAN=4.9
+VARIAN=4.9-new
 
 # Build Type
 BUILD_TYPE="OOS AOSP HyoerOS"
